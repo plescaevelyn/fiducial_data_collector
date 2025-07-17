@@ -1,195 +1,195 @@
-# Fiducial Data Collector - Colectarea Sistematică de Date
+# Fiducial Data Collector - Systematic Data Collection
 
-## Prezentare Generală
+## General Overview
 
-Acest proiect se concentrează **exclusiv pe colectarea datelor** pentru markerii fiduciali folosind OAK-D Lite. Sistemul ghidează utilizatorul pas-cu-pas prin toate măsurătorile necesare.
+This project focuses **exclusively on data collection** for fiducial markers using the OAK-D Lite. The system guides the user step-by-step through all necessary measurements.
 
-## Inspirație din Cercetarea CopperTag
+## Inspired by CopperTag Research
 
-Bazat pe metodologia din articolul CopperTag, dar adaptat pentru:
-- ✅ **Măsurători reale** (nu simulare)
-- ✅ **Camera stereo-depth** (OAK-D Lite)
-- ✅ **Ghidare interactivă** pentru utilizator
-- ✅ **Combinații optimizate** pentru o singură persoană
+Based on the methodology of the CopperTag paper, but adapted for:
+- Real-world measurements (no simulation)
+- Stereo-depth camera (OAK-D Lite)
+- Interactive user guidance
+- Optimized test combinations for a single operator
 
-## Combinații de Testare Optimizate
+## Optimized Test Combinations
 
-### **Markeri Selectați (7 tipuri reprezentative)**
-1. **ArUco 4x4_50** - Standard industrial
-2. **ArUco 6x6_250** - Echilibru precizie/viteză
-3. **AprilTag 36h11** - Cel mai robust AprilTag
-4. **QR Code** - Standard comercial
-5. **RuneTag** - Reprezentant circular
-6. **ChromaTag** - Reprezentant color-based
-7. **CopperTag** - Reprezentant industrial robust
+### **Selected Markers (7 representative types)**
+1. **ArUco 4x4_50** – Industrial standard
+2. **ArUco 6x6_250** – Balanced precision/speed
+3. **AprilTag 36h11** – Most robust AprilTag
+4. **QR Code** – Commercial standard
+5. **RuneTag** – Circular representative
+6. **ChromaTag** – Color-based representative
+7. **CopperTag** – Robust industrial representative
 
-### **Condiții de Testare (Inspirate din CopperTag)**
+### **Test Conditions (Inspired by CopperTag)**
 
-#### **Test Set 1: Distanță (8 măsurători × 7 markeri = 56 teste)**
+#### **Test Set 1: Distance (8 measurements × 7 markers = 56 tests)**
 - 0.3m, 0.6m, 1.0m, 1.5m, 2.0m, 2.5m, 3.0m, 3.5m
-- **Timp estimat**: ~2 ore
+- **Estimated time**: ~2 hours
 
-#### **Test Set 2: Rotație X (7 măsurători × 7 markeri = 49 teste)**
+#### **Test Set 2: X-Rotation (7 × 7 = 49 tests)**
 - -60°, -40°, -20°, 0°, 20°, 40°, 60°
-- **Timp estimat**: ~1.5 ore
+- **Estimated time**: ~1.5 hours
 
-#### **Test Set 3: Rotație Y (7 măsurători × 7 markeri = 49 teste)**
+#### **Test Set 3: Y-Rotation (7 × 7 = 49 tests)**
 - -60°, -40°, -20°, 0°, 20°, 40°, 60°
-- **Timp estimat**: ~1.5 ore
+- **Estimated time**: ~1.5 hours
 
-#### **Test Set 4: Rotație Z (5 măsurători × 7 markeri = 35 teste)**
+#### **Test Set 4: Z-Rotation (5 × 7 = 35 tests)**
 - 0°, 45°, 90°, 180°, 270°
-- **Timp estimat**: ~1 oră
+- **Estimated time**: ~1 hour
 
-#### **Test Set 5: Ocluziune (4 măsurători × 7 markeri = 28 teste)**
-- 5%, 10%, 15%, 20% (cu obiecte fizice)
-- **Timp estimat**: ~1 oră
+#### **Test Set 5: Occlusion (4 × 7 = 28 tests)**
+- 5%, 10%, 15%, 20% (with physical objects)
+- **Estimated time**: ~1 hour
 
-#### **Test Set 6: Iluminare (4 măsurători × 7 markeri = 28 teste)**
+#### **Test Set 6: Lighting (4 × 7 = 28 tests)**
 - Bright, Normal, Dim, Shadow
-- **Timp estimat**: ~1 oră
+- **Estimated time**: ~1 hour
 
-**TOTAL: 245 teste în ~7 ore de colectare**
+**TOTAL: 245 tests in ~7 hours of collection**
 
-## Structura Proiectului
+## Project Structure
 
 ```
 fiducial_data_collector/
-├── README.md                    # Acest fișier
-├── main_collector.py            # Script principal cu ghidare
+├── README.md                    # This file
+├── main_collector.py            # Main script with interactive guidance
 ├── config/
-│   ├── test_configurations.py   # Configurațiile de testare
-│   ├── marker_definitions.py    # Definițiile markerilor
-│   └── measurement_protocol.py  # Protocolul de măsurare
+│   ├── test_configurations.py   # Test setup configurations
+│   ├── marker_definitions.py    # Marker definitions
+│   └── measurement_protocol.py  # Measurement protocol
 ├── detectors/
-│   ├── opencv_detectors.py      # Detectori OpenCV (ArUco, AprilTag, QR)
-│   ├── external_detectors.py    # Detectori externi (RuneTag, ChromaTag, etc.)
-│   └── detector_manager.py      # Manager pentru toți detectorii
+│   ├── opencv_detectors.py      # OpenCV-based detectors (ArUco, AprilTag, QR)
+│   ├── external_detectors.py    # External detectors (RuneTag, ChromaTag, etc.)
+│   └── detector_manager.py      # Detector orchestration logic
 ├── data_collection/
-│   ├── oak_interface.py         # Interfața cu OAK-D Lite
-│   ├── metrics_collector.py     # Colectarea metricilor
-│   ├── user_guidance.py         # Ghidarea utilizatorului
-│   └── data_saver.py           # Salvarea datelor
+│   ├── oak_interface.py         # OAK-D Lite interface
+│   ├── metrics_collector.py     # Metric collection logic
+│   ├── user_guidance.py         # User instruction logic
+│   └── data_saver.py            # Data persistence
 ├── utils/
-│   ├── system_monitor.py        # Monitorizare CPU/RAM
-│   ├── progress_tracker.py      # Tracking progres
-│   └── validation_helpers.py    # Validare date
-├── markers/                     # Markerii pentru printare
+│   ├── system_monitor.py        # CPU/RAM monitoring
+│   ├── progress_tracker.py      # Track collection progress
+│   └── validation_helpers.py    # Data validation utilities
+├── markers/                     # Printable markers
 │   ├── aruco/
 │   ├── apriltag/
 │   ├── qr/
 │   └── custom/
-└── datasets/                    # Datele colectate
+└── datasets/                    # Collected datasets
     ├── raw_data/
     ├── processed/
     └── reports/
 ```
 
-## Fluxul de Colectare
+## Collection Flow
 
-### **Pas 1: Pregătirea**
+### **Step 1: Preparation**
 ```
-🖨️  Printează markerii din markers/
-📏 Pregătește rigla pentru măsurarea distanțelor
-💡 Pregătește surse de lumină pentru teste iluminare
-📦 Pregătește obiecte pentru teste ocluziune
-```
-
-### **Pas 2: Calibrarea**
-```
-📷 Conectează OAK-D Lite
-🎯 Calibrează camera automat
-📐 Setează sistemul de coordonate
+Print markers from markers/
+Prepare a ruler for distance tests
+Prepare lighting sources for illumination tests
+Prepare occlusion objects (e.g. paper, cardboard)
 ```
 
-### **Pas 3: Colectarea Ghidată**
+### **Step 2: Calibration**
 ```
-👤 Sistemul îți spune exact ce să faci:
-   "Poziționează markerul ArUco 4x4_50 la 0.3m distanță"
-   "Rotește camera cu 20° pe axa X"
-   "Aplică umbră pe jumătate din marker"
-   
-📊 Colectează automat toate metricile
-💾 Salvează datele în timp real
-📈 Afișează progresul (Test 15/280)
+Connect OAK-D Lite
+Automatic camera calibration
+Set up coordinate system
 ```
 
-## Ghidarea Interactivă
-
-### **Exemplu de Interacțiune**
+### **Step 3: Guided Collection**
 ```
-🎯 FIDUCIAL DATA COLLECTOR
-📊 Progres general: 15/280 teste (5.4%)
-⏱️  Timp rămas estimat: 7h 23min
+The system gives precise instructions:
+  "Place ArUco 4x4_50 marker at 0.3m distance"
+  "Rotate the camera 20° on X-axis"
+  "Apply shadow on half of the marker"
 
-📍 TEST CURENT: Distanță - ArUco 4x4_50
-🎯 Instrucțiuni:
-   1. Printează markerul ArUco 4x4_50 (5cm x 5cm)
-   2. Lipește markerul pe o suprafață plană
-   3. Poziționează markerul la EXACT 0.6m de cameră
-   4. Asigură-te că markerul este perpendicular pe cameră
-   5. Apasă ENTER când ești gata
-
-📷 Camera detectează: ✅ Marker găsit
-📏 Distanța măsurată: 0.58m (±2cm - OK)
-⏱️  Colectare în curs... 10s
-
-✅ Test completat!
-📊 Rezultate:
-   - Rata detecție: 98.5%
-   - Timp procesare: 12.3ms
-   - CPU: 45%, RAM: 1.2GB
-   - Colțuri detectate: 4/4
-
-➡️  Următorul test: ArUco 4x4_50 la 1.0m
+Automatically collects all metrics
+Saves data in real-time
+Displays progress (Test 15/280)
 ```
 
-## Metricile Colectate
+## Interactive Guidance
 
-### **Pentru Fiecare Test (10 metrici)**
-1. **CPU utilizat** - % în timpul detecției
-2. **Memorie consumată** - MB peak usage
-3. **Timpul de procesare** - ms per frame
-4. **Rata de detecție** - % frame-uri cu detecție
-5. **Distanța măsurată** - vs distanța reală
-6. **Precizia colțurilor** - eroarea în pixeli
-7. **Stabilitatea ID** - consistența identificării
-8. **Robustețea la mișcare** - detecție în timpul mișcării
-9. **Calitatea depth** - validitatea datelor depth
-10. **Scorul general** - metric agregat
+### **Example Interaction**
+```
+FIDUCIAL DATA COLLECTOR
+Progress: 15/280 tests (5.4%)
+Estimated time remaining: 7h 23min
 
-## Avantajele Acestui Approach
+CURRENT TEST: Distance - ArUco 4x4_50
+Instructions:
+  1. Print ArUco 4x4_50 marker (5cm x 5cm)
+  2. Attach it to a flat surface
+  3. Position it at EXACTLY 0.6m from the camera
+  4. Ensure it is perpendicular to the camera
+  5. Press ENTER when ready
 
-### **Față de CopperTag**
-- ✅ **Măsurători reale** vs simulare
-- ✅ **Date depth** pentru poziționare 3D precisă
-- ✅ **Ghidare pas-cu-pas** pentru reproductibilitate
-- ✅ **Optimizat pentru o persoană** (8 ore vs săptămâni)
+Camera status: Marker found
+Measured distance: 0.58m (±2cm - OK)
+Collecting... 10s
 
-### **Față de Alte Studii**
-- ✅ **Markeri diversi** (8 tipuri reprezentative)
-- ✅ **Condiții realiste** (iluminare, ocluziune)
-- ✅ **Metrici complete** (10 categorii)
-- ✅ **Date structurate** pentru analiză ulterioară
+Test complete!
+Results:
+  - Detection rate: 98.5%
+  - Processing time: 12.3ms
+  - CPU: 45%, RAM: 1.2GB
+  - Corners detected: 4/4
 
-## Rezultate Așteptate
+Next test: ArUco 4x4_50 at 1.0m
+```
 
-### **Dataset Final**
-- **245 teste** complete
-- **~45GB date** (RGB + Depth + Metadata)
-- **2450 metrici** individuale (10 × 245)
-- **Raport automat** cu statistici
+## Collected Metrics
 
-### **Aplicabilitate**
-- **Cercetare academică** - dataset pentru publicații
-- **Dezvoltare industrială** - alegerea markerilor optimi
-- **Benchmarking** - comparația obiectivă a algoritmilor
-- **Optimizare** - identificarea slăbiciunilor pentru îmbunătățiri
+### **For Each Test (10 metrics)**
+1. **CPU usage** - during detection
+2. **Memory usage** - peak MB used
+3. **Processing time** - per frame
+4. **Detection rate** - % of frames with valid detection
+5. **Measured distance** - vs ground truth
+6. **Corner precision** - pixel error
+7. **ID stability** - consistent identification
+8. **Motion robustness** - detection under motion
+9. **Depth quality** - depth data validity
+10. **Overall score** - aggregate rating
 
-## Următorii Pași
+## Advantages of This Approach
 
-1. **Implementarea scriptului principal** cu ghidare interactivă
-2. **Integrarea detectorilor** pentru toți markerii
-3. **Testarea cu OAK-D Lite** pentru validare
-4. **Colectarea dataset-ului** în ~8 ore
-5. **Generarea raportului** automat cu rezultate
+### **Compared to CopperTag**
+- Real measurements instead of simulation
+- Depth data enables accurate 3D positioning
+- Step-by-step interactive guidance
+- Optimized for one-person operation (~8h vs weeks)
+
+### **Compared to Other Studies**
+- Diverse marker set (7 representative types)
+- Realistic testing conditions (lighting, occlusion)
+- Full metric suite (10 types)
+- Structured datasets for post-analysis
+
+## Expected Outcomes
+
+### **Final Dataset**
+- **245 complete tests**
+- **~45GB of data** (RGB + Depth + Metadata)
+- **2450 individual metrics**
+- **Auto-generated statistical report**
+
+### **Use Cases**
+- Academic research (dataset for publications)
+- Industrial development (choose optimal markers)
+- Benchmarking (objective algorithm comparisons)
+- Optimization (identify weaknesses and improve)
+
+## Next Steps
+
+1. Implement main interactive script
+2. Integrate all marker detectors
+3. Validate tests with OAK-D Lite
+4. Collect the dataset in ~8 hours
+5. Generate and review automatic report
