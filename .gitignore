@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# IDEs
+.vscode/
+.idea/
+
+# Data / outputs
+output/
+synthetic_oakd/
+*.hdf5
+
+# Jupyter
+.ipynb_checkpoints/

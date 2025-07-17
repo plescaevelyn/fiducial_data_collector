@@ -1,195 +1,185 @@
-# Fiducial Data Collector - Colectarea Sistematică de Date
+# Fiducial Marker Dataset Generator & Collector  
+**Synthetic + Manual Data Acquisition Framework**
 
-## Prezentare Generală
+This project provides a complete system for generating and collecting data for
+fiducial marker detection algorithms.  
+It supports two independent workflows:
 
-Acest proiect se concentrează **exclusiv pe colectarea datelor** pentru markerii fiduciali folosind OAK-D Lite. Sistemul ghidează utilizatorul pas-cu-pas prin toate măsurătorile necesare.
+1. **Synthetic dataset generation** (camera-independent, fully controlled)
+2. **Manual real-world data collection** using **OAK-D Lite**
 
-## Inspirație din Cercetarea CopperTag
+You can choose **either method** depending on your use case — or combine both for
+maximum robustness.
 
-Bazat pe metodologia din articolul CopperTag, dar adaptat pentru:
-- ✅ **Măsurători reale** (nu simulare)
-- ✅ **Camera stereo-depth** (OAK-D Lite)
-- ✅ **Ghidare interactivă** pentru utilizator
-- ✅ **Combinații optimizate** pentru o singură persoană
 
-## Combinații de Testare Optimizate
+# 1. Synthetic Dataset Generation (Recommended)
 
-### **Markeri Selectați (7 tipuri reprezentative)**
-1. **ArUco 4x4_50** - Standard industrial
-2. **ArUco 6x6_250** - Echilibru precizie/viteză
-3. **AprilTag 36h11** - Cel mai robust AprilTag
-4. **QR Code** - Standard comercial
-5. **RuneTag** - Reprezentant circular
-6. **ChromaTag** - Reprezentant color-based
-7. **CopperTag** - Reprezentant industrial robust
+The **synthetic pipeline** creates perfectly controlled ground-truth data using
+*BlenderProc*, simulating:
 
-### **Condiții de Testare (Inspirate din CopperTag)**
+- RGB images  
+- Depth maps (mm)  
+- Disparity maps  
+- Camera intrinsics  
+- Lighting variations  
+- Occlusions  
+- Pose + 3D ground truth  
+- All marker types:
+  - QR Code  
+  - ArUco 4×4 50  
+  - ArUco 6×6 250  
+  - AprilTag 25h9  
+  - AprilTag 36h11  
+  - RuneTag (synthetic)  
+  - ChromaTag (synthetic)  
+  - CopperTag (synthetic)
 
-#### **Test Set 1: Distanță (8 măsurători × 7 markeri = 56 teste)**
-- 0.3m, 0.6m, 1.0m, 1.5m, 2.0m, 2.5m, 3.0m, 3.5m
-- **Timp estimat**: ~2 ore
+> **Best for:** algorithm development, benchmarking, training ML models,
+> testing corner cases, replicating CopperTag-style experiments.
 
-#### **Test Set 2: Rotație X (7 măsurători × 7 markeri = 49 teste)**
-- -60°, -40°, -20°, 0°, 20°, 40°, 60°
-- **Timp estimat**: ~1.5 ore
+## Synthetic Requirements
 
-#### **Test Set 3: Rotație Y (7 măsurători × 7 markeri = 49 teste)**
-- -60°, -40°, -20°, 0°, 20°, 40°, 60°
-- **Timp estimat**: ~1.5 ore
+- BlenderProc 3.x  
+- Blender 4.2 LTS  
+- Python 3.10  
+- GPU (NVIDIA recommended)  
+- `OpenEXR`, `numpy`, `opencv-python`  
 
-#### **Test Set 4: Rotație Z (5 măsurători × 7 markeri = 35 teste)**
-- 0°, 45°, 90°, 180°, 270°
-- **Timp estimat**: ~1 oră
+## Running Synthetic Generation
 
-#### **Test Set 5: Ocluziune (4 măsurători × 7 markeri = 28 teste)**
-- 5%, 10%, 15%, 20% (cu obiecte fizice)
-- **Timp estimat**: ~1 oră
-
-#### **Test Set 6: Iluminare (4 măsurători × 7 markeri = 28 teste)**
-- Bright, Normal, Dim, Shadow
-- **Timp estimat**: ~1 oră
-
-**TOTAL: 245 teste în ~7 ore de colectare**
-
-## Structura Proiectului
-
-```
-fiducial_data_collector/
-├── README.md                    # Acest fișier
-├── main_collector.py            # Script principal cu ghidare
-├── config/
-│   ├── test_configurations.py   # Configurațiile de testare
-│   ├── marker_definitions.py    # Definițiile markerilor
-│   └── measurement_protocol.py  # Protocolul de măsurare
-├── detectors/
-│   ├── opencv_detectors.py      # Detectori OpenCV (ArUco, AprilTag, QR)
-│   ├── external_detectors.py    # Detectori externi (RuneTag, ChromaTag, etc.)
-│   └── detector_manager.py      # Manager pentru toți detectorii
-├── data_collection/
-│   ├── oak_interface.py         # Interfața cu OAK-D Lite
-│   ├── metrics_collector.py     # Colectarea metricilor
-│   ├── user_guidance.py         # Ghidarea utilizatorului
-│   └── data_saver.py           # Salvarea datelor
-├── utils/
-│   ├── system_monitor.py        # Monitorizare CPU/RAM
-│   ├── progress_tracker.py      # Tracking progres
-│   └── validation_helpers.py    # Validare date
-├── markers/                     # Markerii pentru printare
-│   ├── aruco/
-│   ├── apriltag/
-│   ├── qr/
-│   └── custom/
-└── datasets/                    # Datele colectate
-    ├── raw_data/
-    ├── processed/
-    └── reports/
+```bash
+cd synthetic_generation
+python3 generate_synthetic_markers_dataset.py
 ```
 
-## Fluxul de Colectare
+Outputs are stored in:
 
-### **Pas 1: Pregătirea**
 ```
-🖨️  Printează markerii din markers/
-📏 Pregătește rigla pentru măsurarea distanțelor
-💡 Pregătește surse de lumină pentru teste iluminare
-📦 Pregătește obiecte pentru teste ocluziune
+datasets/synthetic_markers/<marker>/<distance>/<angle>/<lighting>/...
 ```
 
-### **Pas 2: Calibrarea**
+Each sample includes:
+
+- rgb.png
+- depth_mm.png
+- disp.png
+- camera_intrinsics.json
+- metadata.json (ground-truth pose, angle, occlusion, lighting)
+- segmentation masks
+
+# 2. Manual Data Collection (Real OAK-D Lite)
+
+The **manual workflow** performs guided, systematic data acquisition using the
+actual **OAK-D Lite** camera.  
+It recreates real CopperTag-style measurements:
+
+- Multiple distances (0.3–2.0 m)
+- X/Y/Z rotations
+- Lighting conditions
+- Occlusion levels
+- All marker families (QR, ArUco, AprilTag, RuneTag, ChromaTag, CopperTag)
+
+The user is guided interactively step-by-step.
+
+> **Best for:** validating real hardware behavior, building real datasets,
+> comparing physical vs. synthetic performance.
+
+## Manual Requirements
+
+### **Hardware**
+- Camera: Luxonis **OAK-D Lite**
+- **Measuring tape** (for accurate distance calibration)
+- **Goniometer** (for angle measurement)
+- Optional: adjustable lights, occlusion objects
+
+### **Software**
+- Ubuntu **22.04**
+- ROS 2 **Humble**
+- Python **3.10.12**
+- DepthAI **2.30.0.0**
+- OpenCV **4.9.0.80**
+- NumPy **1.26.4**
+
+---
+
+## Running Manual Collection
+
+```bash
+cd manual_detection
+python3 run_collector.py
 ```
-📷 Conectează OAK-D Lite
-🎯 Calibrează camera automat
-📐 Setează sistemul de coordonate
+
+You will be guided through:
+
+- Positioning the marker  
+- Aligning distances  
+- Rotating at precise angles  
+- Adjusting illumination  
+- Introducing occlusion  
+- Capturing RGB + depth + edge maps  
+- Recording all metrics + detection statistics  
+
+Data is saved in:
+
+```
+datasets/raw_data/test_XXX_<type>_<marker>/
 ```
 
-### **Pas 3: Colectarea Ghidată**
+Each folder contains:
+
+- rgb.jpg
+- depth_raw.npy
+- depth_vis.png
+- edge.png
+- test_data.json
+
+# When Should You Use Synthetic vs Manual?
+
+| Goal | Synthetic | Manual |
+|------|-----------|--------|
+| Fast generation of large datasets | ✅ | ❌ |
+| Perfect control over ground truth | ✅ | ❌ |
+| Replicate CopperTag metrics | ✅ | ⚠️ possible but slower |
+| Validate algorithm on *real* sensor noise | ⚠️ optional | ✅ |
+| Compare ideal vs. real camera | combine both |
+| Train ML models | ✅ | optional |
+| Evaluate physical distortions | ❌ | ✅ |
+
+**Recommended workflow:**  
+1. Develop & tune using **synthetic** data  
+2. Validate on **OAK-D Lite**  
+3. Compare results for sensor-specific biases
+
+# Project Structure
+
 ```
-👤 Sistemul îți spune exact ce să faci:
-   "Poziționează markerul ArUco 4x4_50 la 0.3m distanță"
-   "Rotește camera cu 20° pe axa X"
-   "Aplică umbră pe jumătate din marker"
-   
-📊 Colectează automat toate metricile
-💾 Salvează datele în timp real
-📈 Afișează progresul (Test 15/280)
+project_root/
+│
+├── synthetic_generation/       # Synthetic dataset generator (BlenderProc)
+│   └── generate_synthetic_markers_dataset.py
+│
+├── manual_detection/           # Real camera data collection
+│   └── run_collector.py
+│
+├── detectors/                  # Unified OpenCV + external detector stack
+├── config/                     # Test plan generation (distance / angle / lighting)
+├── markers/                    # Pre-rendered marker templates
+│
+├── datasets/
+│   ├── synthetic_markers/      # Output of synthetic generator
+│   └── raw_data/               # Output of manual collector
+│
+└── README.md
 ```
 
-## Ghidarea Interactivă
+# Summary
 
-### **Exemplu de Interacțiune**
-```
-🎯 FIDUCIAL DATA COLLECTOR
-📊 Progres general: 15/280 teste (5.4%)
-⏱️  Timp rămas estimat: 7h 23min
+This repository gives you:
 
-📍 TEST CURENT: Distanță - ArUco 4x4_50
-🎯 Instrucțiuni:
-   1. Printează markerul ArUco 4x4_50 (5cm x 5cm)
-   2. Lipește markerul pe o suprafață plană
-   3. Poziționează markerul la EXACT 0.6m de cameră
-   4. Asigură-te că markerul este perpendicular pe cameră
-   5. Apasă ENTER când ești gata
+- Synthetic generation (fast, perfect ground truth)  
+- Manual collection (real-world distortions)  
+- Multi-marker support (QR, ArUco, AprilTag, RuneTag, ChromaTag, CopperTag)  
+- A unified evaluation pipeline for systematic fiducial marker analysis
 
-📷 Camera detectează: ✅ Marker găsit
-📏 Distanța măsurată: 0.58m (±2cm - OK)
-⏱️  Colectare în curs... 10s
-
-✅ Test completat!
-📊 Rezultate:
-   - Rata detecție: 98.5%
-   - Timp procesare: 12.3ms
-   - CPU: 45%, RAM: 1.2GB
-   - Colțuri detectate: 4/4
-
-➡️  Următorul test: ArUco 4x4_50 la 1.0m
-```
-
-## Metricile Colectate
-
-### **Pentru Fiecare Test (10 metrici)**
-1. **CPU utilizat** - % în timpul detecției
-2. **Memorie consumată** - MB peak usage
-3. **Timpul de procesare** - ms per frame
-4. **Rata de detecție** - % frame-uri cu detecție
-5. **Distanța măsurată** - vs distanța reală
-6. **Precizia colțurilor** - eroarea în pixeli
-7. **Stabilitatea ID** - consistența identificării
-8. **Robustețea la mișcare** - detecție în timpul mișcării
-9. **Calitatea depth** - validitatea datelor depth
-10. **Scorul general** - metric agregat
-
-## Avantajele Acestui Approach
-
-### **Față de CopperTag**
-- ✅ **Măsurători reale** vs simulare
-- ✅ **Date depth** pentru poziționare 3D precisă
-- ✅ **Ghidare pas-cu-pas** pentru reproductibilitate
-- ✅ **Optimizat pentru o persoană** (8 ore vs săptămâni)
-
-### **Față de Alte Studii**
-- ✅ **Markeri diversi** (8 tipuri reprezentative)
-- ✅ **Condiții realiste** (iluminare, ocluziune)
-- ✅ **Metrici complete** (10 categorii)
-- ✅ **Date structurate** pentru analiză ulterioară
-
-## Rezultate Așteptate
-
-### **Dataset Final**
-- **245 teste** complete
-- **~45GB date** (RGB + Depth + Metadata)
-- **2450 metrici** individuale (10 × 245)
-- **Raport automat** cu statistici
-
-### **Aplicabilitate**
-- **Cercetare academică** - dataset pentru publicații
-- **Dezvoltare industrială** - alegerea markerilor optimi
-- **Benchmarking** - comparația obiectivă a algoritmilor
-- **Optimizare** - identificarea slăbiciunilor pentru îmbunătățiri
-
-## Următorii Pași
-
-1. **Implementarea scriptului principal** cu ghidare interactivă
-2. **Integrarea detectorilor** pentru toți markerii
-3. **Testarea cu OAK-D Lite** pentru validare
-4. **Colectarea dataset-ului** în ~8 ore
-5. **Generarea raportului** automat cu rezultate
+Both systems complement each other, enabling a complete,
+scientifically repeatable evaluation environment.

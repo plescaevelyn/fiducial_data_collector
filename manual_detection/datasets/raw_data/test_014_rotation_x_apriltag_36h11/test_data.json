@@ -1,0 +1,13 @@
+{
+  "config": {
+    "description": "apriltag_36h11 rotation_x=40.0\u00b0",
+    "marker_type": "apriltag_36h11",
+    "marker_id": 0,
+    "type": "rotation_x",
+    "param": 40.0,
+    "estimated_seconds": 90
+  },
+  "session_id": "20251112_103748",
+  "timestamp": "2025-11-12T10:59:39.748582",
+  "measurements": []
+}

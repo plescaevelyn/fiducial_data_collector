@@ -1,0 +1,13 @@
+{
+  "config": {
+    "description": "qr_code distance=3.0m",
+    "marker_type": "qr_code",
+    "marker_id": null,
+    "type": "distance",
+    "param": 3.0,
+    "estimated_seconds": 90
+  },
+  "session_id": "20251112_114128",
+  "timestamp": "2025-11-12T11:47:51.562280",
+  "measurements": []
+}
