@@ -1,0 +1,14 @@
+{
+  "config": {
+    "test_type": "TestType.DISTANCE",
+    "marker_type": "MarkerType.ARUCO_4X4_50",
+    "parameter_value": 2.0,
+    "parameter_unit": "m",
+    "description": "Testare aruco_4x4_50 la 2.0m",
+    "estimated_duration_seconds": 90,
+    "special_instructions": "Pozi\u021bioneaz\u0103 markerul la 2.0m de camer\u0103"
+  },
+  "session_id": "20250717_205348",
+  "timestamp": "2025-07-17T20:56:58.371251",
+  "measurements": []
+}

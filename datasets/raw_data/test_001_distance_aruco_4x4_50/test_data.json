@@ -1,0 +1,4019 @@
+{
+  "config": {
+    "test_type": "TestType.DISTANCE",
+    "marker_type": "MarkerType.ARUCO_4X4_50",
+    "parameter_value": 0.3,
+    "parameter_unit": "m",
+    "description": "Test aruco_4x4_50 at 0.3m",
+    "estimated_duration_seconds": 90,
+    "special_instructions": "Place the marker 0.3m from the camera"
+  },
+  "session_id": "20250717_210501",
+  "timestamp": "2025-07-17T21:05:12.195437",
+  "measurements": [
+    {
+      "frame_id": 23,
+      "timestamp": 1752775515.393776,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            812.0,
+            543.0
+          ],
+          [
+            1148.0,
+            521.0
+          ],
+          [
+            1169.0,
+            856.0
+          ],
+          [
+            834.0,
+            875.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10122162885098228,
+            0.06869102513256302,
+            0.07334127618316309
+          ],
+          "rotation_vector": [
+            3.1501611418701683,
+            -0.10147931155735344,
+            0.005433903718024748
+          ],
+          "rotation_matrix": [
+            [
+              0.9979207826834583,
+              -0.06434175727786184,
+              0.0037748852737231886
+            ],
+            [
+              -0.06437695265476312,
+              -0.9978746335277001,
+              0.010090774442262057
+            ],
+            [
+              0.0031176040992159613,
+              -0.010312809139848035,
+              -0.9999419615719333
+            ]
+          ],
+          "distance": 0.14262965285375764
+        },
+        "metrics": {
+          "detection_time_ms": 6.713007999678666,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853784734831804,
+          "center_pixel": [
+            990.75,
+            698.75
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 7.330055999773322,
+        "calibration_available": true,
+        "timestamp": 1752775515.393767
+      },
+      "system_metrics": {
+        "cpu_percent": 0.0,
+        "memory_mb": 5367.45703125,
+        "timestamp": 1752775515.408662
+      }
+    },
+    {
+      "frame_id": 24,
+      "timestamp": 1752775515.5333886,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            849.0,
+            510.0
+          ],
+          [
+            1190.0,
+            513.0
+          ],
+          [
+            1186.0,
+            852.0
+          ],
+          [
+            849.0,
+            847.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10414245728897045,
+            0.06511654691632071,
+            0.07251861123722335
+          ],
+          "rotation_vector": [
+            3.1480409843529986,
+            0.015191501342747323,
+            0.005003393560857788
+          ],
+          "rotation_matrix": [
+            [
+              0.999948374938162,
+              0.009661362391774344,
+              0.003147306032741585
+            ],
+            [
+              0.009640736115862724,
+              -0.9999323736953772,
+              0.006504171205669783
+            ],
+            [
+              0.0032099323471411934,
+              -0.006473493080491562,
+              -0.9999738947700902
+            ]
+          ],
+          "distance": 0.14263507657047744
+        },
+        "metrics": {
+          "detection_time_ms": 8.069675999649917,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853656091182558,
+          "center_pixel": [
+            1018.5,
+            680.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 8.584057000007306,
+        "calibration_available": true,
+        "timestamp": 1752775515.5333712
+      },
+      "system_metrics": {
+        "cpu_percent": 32.7,
+        "memory_mb": 5364.80078125,
+        "timestamp": 1752775515.5337143
+      }
+    },
+    {
+      "frame_id": 25,
+      "timestamp": 1752775515.6617587,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            859.0,
+            504.0
+          ],
+          [
+            1204.0,
+            509.0
+          ],
+          [
+            1197.0,
+            850.0
+          ],
+          [
+            858.0,
+            843.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.1049567678605508,
+            0.06403724188818119,
+            0.07198420211967799
+          ],
+          "rotation_vector": [
+            3.148869499035882,
+            0.02158425069795347,
+            0.001950878471885006
+          ],
+          "rotation_matrix": [
+            [
+              0.999905266917986,
+              0.013712926081168737,
+              0.0011886328129263766
+            ],
+            [
+              0.013703817245625484,
+              -0.9998790129524432,
+              0.007359677312649484
+            ],
+            [
+              0.0012894117147213284,
+              -0.007342691300894529,
+              -0.999972210764824
+            ]
+          ],
+          "distance": 0.14247251251797882
+        },
+        "metrics": {
+          "detection_time_ms": 8.35784099990633,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853441581004488,
+          "center_pixel": [
+            1029.5,
+            676.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 8.822006000173133,
+        "calibration_available": true,
+        "timestamp": 1752775515.661751
+      },
+      "system_metrics": {
+        "cpu_percent": 31.2,
+        "memory_mb": 5363.5234375,
+        "timestamp": 1752775515.6620991
+      }
+    },
+    {
+      "frame_id": 26,
+      "timestamp": 1752775515.8026443,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            869.0,
+            516.0
+          ],
+          [
+            1213.0,
+            522.0
+          ],
+          [
+            1207.0,
+            864.0
+          ],
+          [
+            866.0,
+            856.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10608794117131407,
+            0.06579632090870637,
+            0.07186754123917234
+          ],
+          "rotation_vector": [
+            3.146287149396391,
+            0.026669290916371158,
+            0.0005081339906666309
+          ],
+          "rotation_matrix": [
+            [
+              0.9998562591771151,
+              0.01695232520920396,
+              0.00028223101656219256
+            ],
+            [
+              0.016950772401153853,
+              -0.9998447550208297,
+              0.0048101114686995
+            ],
+            [
+              0.00036372977552382075,
+              -0.004804636025592529,
+              -0.9999883915192775
+            ]
+          ],
+          "distance": 0.1440442660811384
+        },
+        "metrics": {
+          "detection_time_ms": 8.397091000006185,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853625888825516,
+          "center_pixel": [
+            1038.75,
+            689.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 8.840513999984978,
+        "calibration_available": true,
+        "timestamp": 1752775515.8026364
+      },
+      "system_metrics": {
+        "cpu_percent": 28.1,
+        "memory_mb": 5364.23046875,
+        "timestamp": 1752775515.8029764
+      }
+    },
+    {
+      "frame_id": 27,
+      "timestamp": 1752775515.9151316,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            871.0,
+            519.0
+          ],
+          [
+            1217.0,
+            521.0
+          ],
+          [
+            1213.0,
+            865.0
+          ],
+          [
+            870.0,
+            860.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.1059989803469676,
+            0.06565444317178441,
+            0.07141717935460812
+          ],
+          "rotation_vector": [
+            3.1486590765253433,
+            0.01108886465720199,
+            0.0004956655285821555
+          ],
+          "rotation_matrix": [
+            [
+              0.9999751452783728,
+              0.007044486875816391,
+              0.0002898795499758999
+            ],
+            [
+              0.007042255939568875,
+              -0.9999500893311676,
+              0.007086993570735363
+            ],
+            [
+              0.0003397893150917202,
+              -0.007084776019500413,
+              -0.9999748449295986
+            ]
+          ],
+          "distance": 0.1436896073129931
+        },
+        "metrics": {
+          "detection_time_ms": 8.51882500001011,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853732400630664,
+          "center_pixel": [
+            1042.75,
+            691.25
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.068126999864035,
+        "calibration_available": true,
+        "timestamp": 1752775515.915123
+      },
+      "system_metrics": {
+        "cpu_percent": 28.1,
+        "memory_mb": 5364.71484375,
+        "timestamp": 1752775515.9155588
+      }
+    },
+    {
+      "frame_id": 28,
+      "timestamp": 1752775516.0824072,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            869.0,
+            515.0
+          ],
+          [
+            1215.0,
+            515.0
+          ],
+          [
+            1211.0,
+            860.0
+          ],
+          [
+            869.0,
+            855.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10578348304209163,
+            0.06494841565286638,
+            0.07143017985149483
+          ],
+          "rotation_vector": [
+            3.1493534180622462,
+            0.007554476967565976,
+            0.0016831801600607696
+          ],
+          "rotation_matrix": [
+            [
+              0.999987921078207,
+              0.0048015294637990015,
+              0.001050244016148569
+            ],
+            [
+              0.004793223885073394,
+              -0.9999583039115337,
+              0.007772737172729696
+            ],
+            [
+              0.001087521251630388,
+              -0.007767609231741913,
+              -0.9999692402990955
+            ]
+          ],
+          "distance": 0.1432156156777287
+        },
+        "metrics": {
+          "detection_time_ms": 8.582451000165747,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853593843172765,
+          "center_pixel": [
+            1041.0,
+            686.25
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.029294999891135,
+        "calibration_available": true,
+        "timestamp": 1752775516.0823996
+      },
+      "system_metrics": {
+        "cpu_percent": 8.0,
+        "memory_mb": 5364.87109375,
+        "timestamp": 1752775516.0827885
+      }
+    },
+    {
+      "frame_id": 29,
+      "timestamp": 1752775516.1849985,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            885.0,
+            515.0
+          ],
+          [
+            1232.0,
+            517.0
+          ],
+          [
+            1228.0,
+            861.0
+          ],
+          [
+            884.0,
+            855.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10815887891293671,
+            0.06507071877848138,
+            0.07147690402207582
+          ],
+          "rotation_vector": [
+            3.148645970107234,
+            0.009478739162753796,
+            -0.004619234949805241
+          ],
+          "rotation_matrix": [
+            [
+              0.9999775708066913,
+              0.006010319012247331,
+              -0.0029553255185028513
+            ],
+            [
+              0.006031065725141807,
+              -0.9999568759815265,
+              0.00706204102827783
+            ],
+            [
+              -0.0029127529535330674,
+              -0.007079706394835731,
+              -0.9999706963844464
+            ]
+          ],
+          "distance": 0.14505684864435928
+        },
+        "metrics": {
+          "detection_time_ms": 8.298545999878115,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853496938365783,
+          "center_pixel": [
+            1057.25,
+            687.0
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 8.789460000116378,
+        "calibration_available": true,
+        "timestamp": 1752775516.1849875
+      },
+      "system_metrics": {
+        "cpu_percent": 17.1,
+        "memory_mb": 5365.51953125,
+        "timestamp": 1752775516.1853971
+      }
+    },
+    {
+      "frame_id": 30,
+      "timestamp": 1752775516.3387659,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            884.0,
+            517.0
+          ],
+          [
+            1230.0,
+            515.0
+          ],
+          [
+            1229.0,
+            861.0
+          ],
+          [
+            886.0,
+            857.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10809878064798284,
+            0.06508386590889177,
+            0.07142509374567912
+          ],
+          "rotation_vector": [
+            3.147142317389093,
+            -0.001039163019333731,
+            -0.0014952714201717674
+          ],
+          "rotation_matrix": [
+            [
+              0.999999330472379,
+              -0.0006630168338029084,
+              -0.0009484004806303896
+            ],
+            [
+              -0.0006577428445682899,
+              -0.9999843796792932,
+              0.0055504749138712605
+            ],
+            [
+              -0.0009520657246142212,
+              -0.005549847394045077,
+              -0.9999841462567088
+            ]
+          ],
+          "distance": 0.14499241358018136
+        },
+        "metrics": {
+          "detection_time_ms": 8.288209000056668,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853495115334208,
+          "center_pixel": [
+            1057.25,
+            687.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 8.744413000385975,
+        "calibration_available": true,
+        "timestamp": 1752775516.3387587
+      },
+      "system_metrics": {
+        "cpu_percent": 14.7,
+        "memory_mb": 5366.5,
+        "timestamp": 1752775516.3391373
+      }
+    },
+    {
+      "frame_id": 31,
+      "timestamp": 1752775516.4747548,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            875.0,
+            519.0
+          ],
+          [
+            1221.0,
+            517.0
+          ],
+          [
+            1221.0,
+            861.0
+          ],
+          [
+            880.0,
+            861.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10693736604760874,
+            0.06536980535457006,
+            0.07140799117836517
+          ],
+          "rotation_vector": [
+            3.147221901164386,
+            -0.00818678156179017,
+            0.002839056978787601
+          ],
+          "rotation_matrix": [
+            [
+              0.9999848394897116,
+              -0.005197375267341631,
+              0.0018188130926304218
+            ],
+            [
+              -0.005207552798676165,
+              -0.9999705555819888,
+              0.005636431752236254
+            ],
+            [
+              0.0017894648877523063,
+              -0.005645817866265481,
+              -0.9999824611242122
+            ]
+          ],
+          "distance": 0.14424948150140476
+        },
+        "metrics": {
+          "detection_time_ms": 8.494798999890918,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853659874447299,
+          "center_pixel": [
+            1049.25,
+            689.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.031319999849075,
+        "calibration_available": true,
+        "timestamp": 1752775516.4747467
+      },
+      "system_metrics": {
+        "cpu_percent": 9.9,
+        "memory_mb": 5366.984375,
+        "timestamp": 1752775516.4751875
+      }
+    },
+    {
+      "frame_id": 32,
+      "timestamp": 1752775516.60798,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            867.0,
+            528.0
+          ],
+          [
+            1211.0,
+            522.0
+          ],
+          [
+            1216.0,
+            865.0
+          ],
+          [
+            874.0,
+            868.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10632613828496738,
+            0.06657800762981002,
+            0.07171518132754585
+          ],
+          "rotation_vector": [
+            3.147378774419731,
+            -0.025580681556525146,
+            0.0005107231018531827
+          ],
+          "rotation_matrix": [
+            [
+              0.9998678409804088,
+              -0.016253058249561306,
+              0.00037238516598628703
+            ],
+            [
+              -0.016254969745756572,
+              -0.9998505469589508,
+              0.005887249311134416
+            ],
+            [
+              0.00027664370590723146,
+              -0.005892524367644245,
+              -0.9999826006610499
+            ]
+          ],
+          "distance": 0.14450240833768768
+        },
+        "metrics": {
+          "detection_time_ms": 8.914755000205332,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853758303569869,
+          "center_pixel": [
+            1042.0,
+            695.75
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.417682000275818,
+        "calibration_available": true,
+        "timestamp": 1752775516.607972
+      },
+      "system_metrics": {
+        "cpu_percent": 12.5,
+        "memory_mb": 5364.16015625,
+        "timestamp": 1752775516.6084561
+      }
+    },
+    {
+      "frame_id": 33,
+      "timestamp": 1752775516.739644,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            862.0,
+            530.0
+          ],
+          [
+            1204.0,
+            526.0
+          ],
+          [
+            1206.0,
+            871.0
+          ],
+          [
+            866.0,
+            871.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10512558870680846,
+            0.0670210318229516,
+            0.07161326530928204
+          ],
+          "rotation_vector": [
+            3.145414944836985,
+            -0.0066443967671882005,
+            0.008245380636998848
+          ],
+          "rotation_matrix": [
+            [
+              0.9999773323709717,
+              -0.0042146842946342074,
+              0.005250826652093191
+            ],
+            [
+              -0.004234817067819549,
+              -0.999983702369488,
+              0.0038290102916256714
+            ],
+            [
+              0.005234603006520425,
+              -0.003851159787367284,
+              -0.9999788835268755
+            ]
+          ],
+          "distance": 0.1437764510475334
+        },
+        "metrics": {
+          "detection_time_ms": 8.894362000319234,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853712919087813,
+          "center_pixel": [
+            1034.5,
+            699.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.387302000050113,
+        "calibration_available": true,
+        "timestamp": 1752775516.7396364
+      },
+      "system_metrics": {
+        "cpu_percent": 9.0,
+        "memory_mb": 5364.1484375,
+        "timestamp": 1752775516.7400022
+      }
+    },
+    {
+      "frame_id": 34,
+      "timestamp": 1752775516.876171,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            865.0,
+            527.0
+          ],
+          [
+            1211.0,
+            523.0
+          ],
+          [
+            1212.0,
+            869.0
+          ],
+          [
+            870.0,
+            868.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10547650756315223,
+            0.0664144314773865,
+            0.07138039064413162
+          ],
+          "rotation_vector": [
+            3.1472884592903534,
+            -0.01076667012092911,
+            0.001837606978265173
+          ],
+          "rotation_matrix": [
+            [
+              0.999975913082299,
+              -0.0068383956584664556,
+              0.0011872657833274169
+            ],
+            [
+              -0.006845068932420432,
+              -0.9999602656907337,
+              0.005710697945764674
+            ],
+            [
+              0.0011481665961024705,
+              -0.005718687308781221,
+              -0.9999829890197793
+            ]
+          ],
+          "distance": 0.14363610453048706
+        },
+        "metrics": {
+          "detection_time_ms": 8.775352000157,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853560512145898,
+          "center_pixel": [
+            1039.5,
+            696.75
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.266824999940582,
+        "calibration_available": true,
+        "timestamp": 1752775516.8761613
+      },
+      "system_metrics": {
+        "cpu_percent": 10.8,
+        "memory_mb": 5364.40234375,
+        "timestamp": 1752775516.876579
+      }
+    },
+    {
+      "frame_id": 35,
+      "timestamp": 1752775517.0095558,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            869.0,
+            527.0
+          ],
+          [
+            1217.0,
+            525.0
+          ],
+          [
+            1217.0,
+            872.0
+          ],
+          [
+            873.0,
+            871.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10545629556704056,
+            0.06627679251512475,
+            0.07093077533685652
+          ],
+          "rotation_vector": [
+            3.1470835014684404,
+            -0.005807530891373202,
+            0.0023292570167791635
+          ],
+          "rotation_matrix": [
+            [
+              0.9999920937256069,
+              -0.003686627355470952,
+              0.0014903908948523657
+            ],
+            [
+              -0.0036947644101595054,
+              -0.9999780804612871,
+              0.00549429821842594
+            ],
+            [
+              0.0014701027960602841,
+              -0.005499761422232153,
+              -0.9999837955797422
+            ]
+          ],
+          "distance": 0.14333463779109196
+        },
+        "metrics": {
+          "detection_time_ms": 9.047593000104825,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853697314361713,
+          "center_pixel": [
+            1044.0,
+            698.75
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.58215900027426,
+        "calibration_available": true,
+        "timestamp": 1752775517.0095472
+      },
+      "system_metrics": {
+        "cpu_percent": 12.6,
+        "memory_mb": 5363.09765625,
+        "timestamp": 1752775517.0099485
+      }
+    },
+    {
+      "frame_id": 36,
+      "timestamp": 1752775517.1401079,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            865.0,
+            531.0
+          ],
+          [
+            1215.0,
+            530.0
+          ],
+          [
+            1215.0,
+            877.0
+          ],
+          [
+            868.0,
+            876.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10463025165170635,
+            0.06676782919383834,
+            0.07070426299655551
+          ],
+          "rotation_vector": [
+            3.1485233343839276,
+            -0.006805580036756393,
+            -0.0011556859928412225
+          ],
+          "rotation_matrix": [
+            [
+              0.9999903864077939,
+              -0.004325503655631005,
+              -0.0007191036901711651
+            ],
+            [
+              -0.0043204102504695195,
+              -0.999966586317657,
+              0.006939762494456608
+            ],
+            [
+              -0.0007490976303078731,
+              -0.006936588955455809,
+              -0.9999756609970082
+            ]
+          ],
+          "distance": 0.14284440969755538
+        },
+        "metrics": {
+          "detection_time_ms": 8.980476000033377,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853700061560387,
+          "center_pixel": [
+            1040.75,
+            703.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.446317999845633,
+        "calibration_available": true,
+        "timestamp": 1752775517.140101
+      },
+      "system_metrics": {
+        "cpu_percent": 9.7,
+        "memory_mb": 5362.8359375,
+        "timestamp": 1752775517.1405256
+      }
+    },
+    {
+      "frame_id": 37,
+      "timestamp": 1752775517.2767,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            874.0,
+            527.0
+          ],
+          [
+            1226.0,
+            526.0
+          ],
+          [
+            1226.0,
+            876.0
+          ],
+          [
+            878.0,
+            875.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10536926720480405,
+            0.06591394137494785,
+            0.07021048896248445
+          ],
+          "rotation_vector": [
+            3.14659104218427,
+            -0.005025023025414124,
+            0.0006031390192676487
+          ],
+          "rotation_matrix": [
+            [
+              0.9999948259134349,
+              -0.00319296021636332,
+              0.00039134564614441643
+            ],
+            [
+              -0.003194877949919598,
+              -0.9999823871243524,
+              0.005001819265718308
+            ],
+            [
+              0.0003753681434973375,
+              -0.005003043687448111,
+              -0.9999874142471086
+            ]
+          ],
+          "distance": 0.1427474794846081
+        },
+        "metrics": {
+          "detection_time_ms": 8.97977800013905,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853675135048367,
+          "center_pixel": [
+            1051.0,
+            701.0
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.450158000163356,
+        "calibration_available": true,
+        "timestamp": 1752775517.276692
+      },
+      "system_metrics": {
+        "cpu_percent": 11.0,
+        "memory_mb": 5364.35546875,
+        "timestamp": 1752775517.2770898
+      }
+    },
+    {
+      "frame_id": 38,
+      "timestamp": 1752775517.4088223,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            886.0,
+            526.0
+          ],
+          [
+            1240.0,
+            526.0
+          ],
+          [
+            1240.0,
+            878.0
+          ],
+          [
+            888.0,
+            875.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10662710569308294,
+            0.06562855126281618,
+            0.06988757801499791
+          ],
+          "rotation_vector": [
+            3.1461310057991367,
+            -0.0013728070949321743,
+            -0.0041751931282428805
+          ],
+          "rotation_matrix": [
+            [
+              0.9999960969032398,
+              -0.0008787160803850963,
+              -0.0026521757740872003
+            ],
+            [
+              -0.0008666623986983199,
+              -0.9999893069642218,
+              0.004542560236467405
+            ],
+            [
+              -0.0026561390350026597,
+              -0.004540243965397122,
+              -0.9999861654593835
+            ]
+          ],
+          "distance": 0.14339009718297283
+        },
+        "metrics": {
+          "detection_time_ms": 9.284494999974413,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853580435836042,
+          "center_pixel": [
+            1063.5,
+            701.25
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.808723999867652,
+        "calibration_available": true,
+        "timestamp": 1752775517.4088144
+      },
+      "system_metrics": {
+        "cpu_percent": 13.8,
+        "memory_mb": 5364.35546875,
+        "timestamp": 1752775517.4092538
+      }
+    },
+    {
+      "frame_id": 39,
+      "timestamp": 1752775517.493564,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            884.0,
+            526.0
+          ],
+          [
+            1240.0,
+            526.0
+          ],
+          [
+            1238.0,
+            879.0
+          ],
+          [
+            886.0,
+            876.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10596436913605076,
+            0.06543596096525077,
+            0.06958740926361925
+          ],
+          "rotation_vector": [
+            3.1480014683802406,
+            -0.0007424206284687803,
+            -0.0028584675442541057
+          ],
+          "rotation_matrix": [
+            [
+              0.9999982397569779,
+              -0.0004774927608537809,
+              -0.0018145202142394472
+            ],
+            [
+              -0.0004658515874791863,
+              -0.999979343499018,
+              0.0064105816874531416
+            ],
+            [
+              -0.0018175437389494804,
+              -0.0064097251061491466,
+              -0.9999778057331176
+            ]
+          ],
+          "distance": 0.1426629596001341
+        },
+        "metrics": {
+          "detection_time_ms": 9.190628000396828,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853613950045436,
+          "center_pixel": [
+            1062.0,
+            701.75
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.725543000058678,
+        "calibration_available": true,
+        "timestamp": 1752775517.4935563
+      },
+      "system_metrics": {
+        "cpu_percent": 15.8,
+        "memory_mb": 5365.2421875,
+        "timestamp": 1752775517.493965
+      }
+    },
+    {
+      "frame_id": 40,
+      "timestamp": 1752775517.6511714,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            879.0,
+            524.0
+          ],
+          [
+            1237.0,
+            523.0
+          ],
+          [
+            1235.0,
+            878.0
+          ],
+          [
+            882.0,
+            876.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10483140523179525,
+            0.06485100864328884,
+            0.06917723548460289
+          ],
+          "rotation_vector": [
+            3.1486730444013764,
+            -0.0038106798072031194,
+            -0.0008784435788550646
+          ],
+          "rotation_matrix": [
+            [
+              0.9999969149668388,
+              -0.0024224408084184473,
+              -0.0005493972474411367
+            ],
+            [
+              -0.002418488794212109,
+              -0.999971987574164,
+              0.007083429884489748
+            ],
+            [
+              -0.000566541047107247,
+              -0.007082079320787149,
+              -0.9999747612733714
+            ]
+          ],
+          "distance": 0.14135334008864803
+        },
+        "metrics": {
+          "detection_time_ms": 9.167302000150812,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853620905370136,
+          "center_pixel": [
+            1058.25,
+            700.25
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.709968000152003,
+        "calibration_available": true,
+        "timestamp": 1752775517.6511633
+      },
+      "system_metrics": {
+        "cpu_percent": 8.6,
+        "memory_mb": 5365.8203125,
+        "timestamp": 1752775517.6515431
+      }
+    },
+    {
+      "frame_id": 41,
+      "timestamp": 1752775517.8102844,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            880.0,
+            528.0
+          ],
+          [
+            1234.0,
+            526.0
+          ],
+          [
+            1233.0,
+            880.0
+          ],
+          [
+            883.0,
+            878.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10539987298845448,
+            0.06563325125384897,
+            0.06961488572488121
+          ],
+          "rotation_vector": [
+            3.1468366100395047,
+            -0.002344687419125593,
+            0.0023857476312220973
+          ],
+          "rotation_matrix": [
+            [
+              0.9999977401322685,
+              -0.001486198022077157,
+              0.0015201795271214075
+            ],
+            [
+              -0.001494151999557335,
+              -0.9999851308475877,
+              0.005244577536372162
+            ],
+            [
+              0.0015123624425791382,
+              -0.005246837063600759,
+              -0.9999850916192052
+            ]
+          ],
+          "distance": 0.14234847807623893
+        },
+        "metrics": {
+          "detection_time_ms": 9.345746000235522,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853695995041645,
+          "center_pixel": [
+            1057.5,
+            703.0
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.84071099992434,
+        "calibration_available": true,
+        "timestamp": 1752775517.8102756
+      },
+      "system_metrics": {
+        "cpu_percent": 9.5,
+        "memory_mb": 5366.19140625,
+        "timestamp": 1752775517.8106682
+      }
+    },
+    {
+      "frame_id": 42,
+      "timestamp": 1752775517.9487915,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            876.0,
+            539.0
+          ],
+          [
+            1229.0,
+            538.0
+          ],
+          [
+            1228.0,
+            889.0
+          ],
+          [
+            876.0,
+            888.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10481786082001665,
+            0.06727584690222424,
+            0.06974064237775196
+          ],
+          "rotation_vector": [
+            3.149905054405934,
+            -0.0037186210214444973,
+            0.00015276678028087966
+          ],
+          "rotation_matrix": [
+            [
+              0.999997207950358,
+              -0.0023606530402150504,
+              0.00010681157508965731
+            ],
+            [
+              -0.0023614595274301276,
+              -0.9999626465710189,
+              0.008314383415746016
+            ],
+            [
+              8.718021082317842e-05,
+              -0.00831461243278641,
+              -0.999965429212282
+            ]
+          ],
+          "distance": 0.14274656115842996
+        },
+        "metrics": {
+          "detection_time_ms": 9.04459000003044,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853834401898822,
+          "center_pixel": [
+            1052.25,
+            713.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.576571000252443,
+        "calibration_available": true,
+        "timestamp": 1752775517.9487836
+      },
+      "system_metrics": {
+        "cpu_percent": 9.6,
+        "memory_mb": 5365.0625,
+        "timestamp": 1752775517.9491582
+      }
+    },
+    {
+      "frame_id": 43,
+      "timestamp": 1752775518.0794795,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            880.0,
+            536.0
+          ],
+          [
+            1232.0,
+            534.0
+          ],
+          [
+            1234.0,
+            886.0
+          ],
+          [
+            883.0,
+            885.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10584916432247708,
+            0.06697467960716841,
+            0.06995475376610324
+          ],
+          "rotation_vector": [
+            3.1454847263485943,
+            -0.00681938077763032,
+            -0.0007398648023099259
+          ],
+          "rotation_matrix": [
+            [
+              0.9999904890643194,
+              -0.0043368609804211675,
+              -0.0004619715782935449
+            ],
+            [
+              -0.004335026524174416,
+              -0.9999829964724193,
+              0.003900552662908747
+            ],
+            [
+              -0.00047887987779291874,
+              -0.0038985129059579352,
+              -0.9999922861058402
+            ]
+          ],
+          "distance": 0.14346888467791805
+        },
+        "metrics": {
+          "detection_time_ms": 9.17135200006669,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853757904041264,
+          "center_pixel": [
+            1057.25,
+            710.25
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.697256999970705,
+        "calibration_available": true,
+        "timestamp": 1752775518.0794718
+      },
+      "system_metrics": {
+        "cpu_percent": 10.3,
+        "memory_mb": 5365.0,
+        "timestamp": 1752775518.0798564
+      }
+    },
+    {
+      "frame_id": 44,
+      "timestamp": 1752775518.2139158,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            879.0,
+            532.0
+          ],
+          [
+            1232.0,
+            529.0
+          ],
+          [
+            1233.0,
+            881.0
+          ],
+          [
+            883.0,
+            880.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10581460641195993,
+            0.06633348749233879,
+            0.06997588377957002
+          ],
+          "rotation_vector": [
+            3.1471205456690057,
+            -0.010114752186408971,
+            -0.0012828405156697909
+          ],
+          "rotation_matrix": [
+            [
+              0.9999790088566024,
+              -0.006430083884752787,
+              -0.0007974129431436983
+            ],
+            [
+              -0.006425563869056717,
+              -0.9999639709752327,
+              0.0055469703810890406
+            ],
+            [
+              -0.0008330516979896617,
+              -0.005541730116042167,
+              -0.9999842975028105
+            ]
+          ],
+          "distance": 0.14315546375792348
+        },
+        "metrics": {
+          "detection_time_ms": 9.122671999648446,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853673117527188,
+          "center_pixel": [
+            1056.75,
+            705.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.668413000326836,
+        "calibration_available": true,
+        "timestamp": 1752775518.2139075
+      },
+      "system_metrics": {
+        "cpu_percent": 12.5,
+        "memory_mb": 5365.49609375,
+        "timestamp": 1752775518.2143152
+      }
+    },
+    {
+      "frame_id": 45,
+      "timestamp": 1752775518.3478734,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            875.0,
+            534.0
+          ],
+          [
+            1227.0,
+            530.0
+          ],
+          [
+            1229.0,
+            882.0
+          ],
+          [
+            879.0,
+            882.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10522651219766291,
+            0.06655664086492376,
+            0.06997926772588507
+          ],
+          "rotation_vector": [
+            3.1471992923235583,
+            -0.01262895757660191,
+            0.0005330232679392361
+          ],
+          "rotation_matrix": [
+            [
+              0.9999677389111169,
+              -0.008024374414218813,
+              0.0003613201457025183
+            ],
+            [
+              -0.008026282115987556,
+              -0.9999519364828301,
+              0.005630587858535426
+            ],
+            [
+              0.00031612083423644867,
+              -0.005633306267063659,
+              -0.9999840828373817
+            ]
+          ],
+          "distance": 0.1428268294962765
+        },
+        "metrics": {
+          "detection_time_ms": 9.191465999720094,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853773454049457,
+          "center_pixel": [
+            1052.5,
+            707.0
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.724985000048036,
+        "calibration_available": true,
+        "timestamp": 1752775518.347866
+      },
+      "system_metrics": {
+        "cpu_percent": 9.4,
+        "memory_mb": 5365.4921875,
+        "timestamp": 1752775518.3483677
+      }
+    },
+    {
+      "frame_id": 46,
+      "timestamp": 1752775518.4802897,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            881.0,
+            533.0
+          ],
+          [
+            1234.0,
+            531.0
+          ],
+          [
+            1235.0,
+            882.0
+          ],
+          [
+            885.0,
+            881.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.1062299677915095,
+            0.06659560479226698,
+            0.07007012892327366
+          ],
+          "rotation_vector": [
+            3.146811187777372,
+            -0.009360842149733943,
+            -0.0026445344942474976
+          ],
+          "rotation_matrix": [
+            [
+              0.9999808900510723,
+              -0.005953715148824826,
+              -0.0016651752435103335
+            ],
+            [
+              -0.005944918801264524,
+              -0.9999686074364355,
+              0.005238519073420723
+            ],
+            [
+              -0.001696311619755488,
+              -0.00522851963397623,
+              -0.9999848924405438
+            ]
+          ],
+          "distance": 0.143630092953939
+        },
+        "metrics": {
+          "detection_time_ms": 9.101440999984334,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853644426739639,
+          "center_pixel": [
+            1058.75,
+            706.75
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.561205999943923,
+        "calibration_available": true,
+        "timestamp": 1752775518.4802818
+      },
+      "system_metrics": {
+        "cpu_percent": 10.7,
+        "memory_mb": 5365.4921875,
+        "timestamp": 1752775518.480716
+      }
+    },
+    {
+      "frame_id": 47,
+      "timestamp": 1752775518.612777,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            881.0,
+            531.0
+          ],
+          [
+            1236.0,
+            529.0
+          ],
+          [
+            1238.0,
+            883.0
+          ],
+          [
+            887.0,
+            881.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10607176747328736,
+            0.06620797120856682,
+            0.06980339669598362
+          ],
+          "rotation_vector": [
+            3.1437875011259826,
+            -0.00838414623980713,
+            -0.0036193887477486758
+          ],
+          "rotation_matrix": [
+            [
+              0.9999831246172328,
+              -0.005336277505893966,
+              -0.002296654770746169
+            ],
+            [
+              -0.00533119321114763,
+              -0.9999833376205605,
+              0.0022142403188135764
+            ],
+            [
+              -0.0023084323038188655,
+              -0.002201959042338506,
+              -0.9999949112453895
+            ]
+          ],
+          "distance": 0.14320345490510492
+        },
+        "metrics": {
+          "detection_time_ms": 9.151796999958606,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853203658298504,
+          "center_pixel": [
+            1060.5,
+            706.0
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.670088999882864,
+        "calibration_available": true,
+        "timestamp": 1752775518.6127684
+      },
+      "system_metrics": {
+        "cpu_percent": 12.0,
+        "memory_mb": 5365.4921875,
+        "timestamp": 1752775518.613173
+      }
+    },
+    {
+      "frame_id": 48,
+      "timestamp": 1752775518.743828,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            881.0,
+            532.0
+          ],
+          [
+            1234.0,
+            531.0
+          ],
+          [
+            1234.0,
+            883.0
+          ],
+          [
+            884.0,
+            881.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10596006086377696,
+            0.06645672339494149,
+            0.06993105066459332
+          ],
+          "rotation_vector": [
+            3.146031989703574,
+            -0.0029103439251112065,
+            -0.0006249808145333017
+          ],
+          "rotation_matrix": [
+            [
+              0.9999982095204454,
+              -0.001851039446444231,
+              -0.0003932033452486933
+            ],
+            [
+              -0.001849275084438521,
+              -0.999988428360097,
+              0.004441095311420865
+            ],
+            [
+              -0.000401419437848032,
+              -0.004440360218581025,
+              -0.99999006098239
+            ]
+          ],
+          "distance": 0.14329822898312805
+        },
+        "metrics": {
+          "detection_time_ms": 9.148304000063945,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853693912573116,
+          "center_pixel": [
+            1058.25,
+            706.75
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.982768999634573,
+        "calibration_available": true,
+        "timestamp": 1752775518.74382
+      },
+      "system_metrics": {
+        "cpu_percent": 10.3,
+        "memory_mb": 5365.24609375,
+        "timestamp": 1752775518.744168
+      }
+    },
+    {
+      "frame_id": 49,
+      "timestamp": 1752775518.8807309,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            883.0,
+            534.0
+          ],
+          [
+            1237.0,
+            535.0
+          ],
+          [
+            1234.0,
+            885.0
+          ],
+          [
+            884.0,
+            882.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10621734446893591,
+            0.0668646802345442,
+            0.06999738552200258
+          ],
+          "rotation_vector": [
+            3.1490614864698676,
+            0.0011874886671936473,
+            -0.003056819523320984
+          ],
+          "rotation_matrix": [
+            [
+              0.9999978310860635,
+              0.0007469227780474972,
+              -0.0019442040871991302
+            ],
+            [
+              0.0007614260636138181,
+              -0.9999718112489172,
+              0.007469734795131547
+            ],
+            [
+              -0.0019385699674496044,
+              -0.007471198961584625,
+              -0.9999702111225903
+            ]
+          ],
+          "distance": 0.1437102769770356
+        },
+        "metrics": {
+          "detection_time_ms": 9.031949000018358,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853645968244969,
+          "center_pixel": [
+            1059.5,
+            709.0
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.552755000186153,
+        "calibration_available": true,
+        "timestamp": 1752775518.8807213
+      },
+      "system_metrics": {
+        "cpu_percent": 10.3,
+        "memory_mb": 5364.03515625,
+        "timestamp": 1752775518.8811054
+      }
+    },
+    {
+      "frame_id": 50,
+      "timestamp": 1752775519.0103521,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            877.0,
+            536.0
+          ],
+          [
+            1232.0,
+            538.0
+          ],
+          [
+            1230.0,
+            888.0
+          ],
+          [
+            881.0,
+            885.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10573185241171221,
+            0.06734244609023701,
+            0.07010683328215807
+          ],
+          "rotation_vector": [
+            -3.136890746486219,
+            -0.00042514071203258785,
+            0.004625915393767317
+          ],
+          "rotation_matrix": [
+            [
+              0.9999956139251643,
+              0.0002641278656971717,
+              -0.0029499774414227455
+            ],
+            [
+              0.00027798528740511123,
+              -0.999988925486142,
+              0.00469804525850562
+            ],
+            [
+              -0.0029487038871896117,
+              -0.0046988447028544255,
+              -0.9999846128835403
+            ]
+          ],
+          "distance": 0.14362868004921886
+        },
+        "metrics": {
+          "detection_time_ms": 9.043332999681297,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853194098662413,
+          "center_pixel": [
+            1055.0,
+            711.75
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.522933999960514,
+        "calibration_available": true,
+        "timestamp": 1752775519.010343
+      },
+      "system_metrics": {
+        "cpu_percent": 13.5,
+        "memory_mb": 5364.765625,
+        "timestamp": 1752775519.0107768
+      }
+    },
+    {
+      "frame_id": 51,
+      "timestamp": 1752775519.0984924,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            884.0,
+            536.0
+          ],
+          [
+            1236.0,
+            535.0
+          ],
+          [
+            1235.0,
+            886.0
+          ],
+          [
+            886.0,
+            883.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10659591822482702,
+            0.06715512612877984,
+            0.07017244590420495
+          ],
+          "rotation_vector": [
+            3.146959175858888,
+            -0.0013119899403102146,
+            -0.0017661821205808455
+          ],
+          "rotation_matrix": [
+            [
+              0.9999990224159192,
+              -0.000836820282494574,
+              -0.0011202227550277423
+            ],
+            [
+              -0.0008307956944977428,
+              -0.9999852485056497,
+              0.00536773225933829
+            ],
+            [
+              -0.0011246980572937153,
+              -0.005366796335686927,
+              -0.9999849661626775
+            ]
+          ],
+          "distance": 0.1442105159540902
+        },
+        "metrics": {
+          "detection_time_ms": 8.65829800022766,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.785367151124341,
+          "center_pixel": [
+            1060.25,
+            710.0
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.12916800007224,
+        "calibration_available": true,
+        "timestamp": 1752775519.0984845
+      },
+      "system_metrics": {
+        "cpu_percent": 17.0,
+        "memory_mb": 5364.15625,
+        "timestamp": 1752775519.0988808
+      }
+    },
+    {
+      "frame_id": 52,
+      "timestamp": 1752775519.2843745,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            886.0,
+            533.0
+          ],
+          [
+            1239.0,
+            532.0
+          ],
+          [
+            1239.0,
+            884.0
+          ],
+          [
+            888.0,
+            880.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10689351995842397,
+            0.0667035691276594,
+            0.0701201713435602
+          ],
+          "rotation_vector": [
+            3.146136240371308,
+            -0.002054672334271491,
+            -0.005389564555044545
+          ],
+          "rotation_matrix": [
+            [
+              0.9999932777897991,
+              -0.0013139373528684474,
+              -0.0034231482360227478
+            ],
+            [
+              -0.0012983523159687052,
+              -0.9999888008757465,
+              0.004551088260013262
+            ],
+            [
+              -0.0034290897446213465,
+              -0.004546613214201192,
+              -0.9999837846944338
+            ]
+          ],
+          "distance": 0.1441958015086454
+        },
+        "metrics": {
+          "detection_time_ms": 9.17044400011946,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853450618206589,
+          "center_pixel": [
+            1063.0,
+            707.25
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.706825999728608,
+        "calibration_available": true,
+        "timestamp": 1752775519.2843664
+      },
+      "system_metrics": {
+        "cpu_percent": 7.7,
+        "memory_mb": 5363.35546875,
+        "timestamp": 1752775519.284764
+      }
+    },
+    {
+      "frame_id": 53,
+      "timestamp": 1752775519.4165568,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            886.0,
+            529.0
+          ],
+          [
+            1239.0,
+            530.0
+          ],
+          [
+            1237.0,
+            881.0
+          ],
+          [
+            887.0,
+            877.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10671996511425798,
+            0.06622689924606694,
+            0.07006431528477976
+          ],
+          "rotation_vector": [
+            3.1466594801974113,
+            0.004263682054859001,
+            -0.0027092739911634255
+          ],
+          "rotation_matrix": [
+            [
+              0.9999948454257773,
+              0.0027055831866068924,
+              -0.0017288555449904582
+            ],
+            [
+              0.0027143151965611173,
+              -0.999983471162253,
+              0.00506852003105455
+            ],
+            [
+              -0.0017151136664406656,
+              -0.00507318656387028,
+              -0.9999856604787887
+            ]
+          ],
+          "distance": 0.14381989227524183
+        },
+        "metrics": {
+          "detection_time_ms": 9.077834999970946,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853645794322233,
+          "center_pixel": [
+            1062.25,
+            704.25
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.727848000238737,
+        "calibration_available": true,
+        "timestamp": 1752775519.4165485
+      },
+      "system_metrics": {
+        "cpu_percent": 13.8,
+        "memory_mb": 5361.79296875,
+        "timestamp": 1752775519.4169436
+      }
+    },
+    {
+      "frame_id": 54,
+      "timestamp": 1752775519.5513215,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            890.0,
+            525.0
+          ],
+          [
+            1245.0,
+            526.0
+          ],
+          [
+            1239.0,
+            878.0
+          ],
+          [
+            888.0,
+            875.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10620627086122587,
+            0.06518662748025904,
+            0.06940528909089966
+          ],
+          "rotation_vector": [
+            3.151799246043896,
+            0.007161572410451745,
+            0.002580949249071095
+          ],
+          "rotation_matrix": [
+            [
+              0.9999883332976409,
+              0.00455265463993977,
+              0.0016144981682870328
+            ],
+            [
+              0.004535923949707283,
+              -0.9999374937047869,
+              0.010219299257371564
+            ],
+            [
+              0.0016609221921689103,
+              -0.010211856790940521,
+              -0.9999464782268864
+            ]
+          ],
+          "distance": 0.14263997520432165
+        },
+        "metrics": {
+          "detection_time_ms": 8.795256999746925,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853632429151229,
+          "center_pixel": [
+            1065.5,
+            701.0
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.326610000243818,
+        "calibration_available": true,
+        "timestamp": 1752775519.5513136
+      },
+      "system_metrics": {
+        "cpu_percent": 10.5,
+        "memory_mb": 5362.78125,
+        "timestamp": 1752775519.551725
+      }
+    },
+    {
+      "frame_id": 55,
+      "timestamp": 1752775519.6831386,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            886.0,
+            524.0
+          ],
+          [
+            1239.0,
+            527.0
+          ],
+          [
+            1234.0,
+            878.0
+          ],
+          [
+            884.0,
+            872.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10638703739952189,
+            0.06558570671629645,
+            0.06997583927763375
+          ],
+          "rotation_vector": [
+            3.1479045538449384,
+            0.014816968188447584,
+            -0.0011543835136338476
+          ],
+          "rotation_matrix": [
+            [
+              0.9999554220920898,
+              0.009411229024032254,
+              -0.0007632803471165158
+            ],
+            [
+              0.009415884007371254,
+              -0.9999355490143931,
+              0.006343417505095577
+            ],
+            [
+              -0.0007035317980103401,
+              -0.006350321688027752,
+              -0.9999795890204298
+            ]
+          ],
+          "distance": 0.14323513791920106
+        },
+        "metrics": {
+          "detection_time_ms": 9.093828999994003,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853742260496214,
+          "center_pixel": [
+            1060.75,
+            700.25
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.658077000040066,
+        "calibration_available": true,
+        "timestamp": 1752775519.6831303
+      },
+      "system_metrics": {
+        "cpu_percent": 9.6,
+        "memory_mb": 5362.23828125,
+        "timestamp": 1752775519.6835568
+      }
+    },
+    {
+      "frame_id": 56,
+      "timestamp": 1752775519.8165698,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            884.0,
+            526.0
+          ],
+          [
+            1237.0,
+            530.0
+          ],
+          [
+            1231.0,
+            880.0
+          ],
+          [
+            882.0,
+            874.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10617839869595827,
+            0.06598126301834753,
+            0.07005028933934834
+          ],
+          "rotation_vector": [
+            3.148242116661289,
+            0.016894864892832588,
+            -0.0007036193366968667
+          ],
+          "rotation_matrix": [
+            [
+              0.9999423049685088,
+              0.010730961794074682,
+              -0.00048290085998376245
+            ],
+            [
+              0.010733954282914335,
+              -0.9999199942798471,
+              0.0066923288056459675
+            ],
+            [
+              -0.00041104710042592473,
+              -0.00669712612727902,
+              -0.9999774895175974
+            ]
+          ],
+          "distance": 0.14329836864270523
+        },
+        "metrics": {
+          "detection_time_ms": 9.194958000080078,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853725379396587,
+          "center_pixel": [
+            1058.5,
+            702.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.72826699990037,
+        "calibration_available": true,
+        "timestamp": 1752775519.8165622
+      },
+      "system_metrics": {
+        "cpu_percent": 13.7,
+        "memory_mb": 5362.3125,
+        "timestamp": 1752775519.8169794
+      }
+    },
+    {
+      "frame_id": 57,
+      "timestamp": 1752775519.9517176,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            884.0,
+            528.0
+          ],
+          [
+            1236.0,
+            532.0
+          ],
+          [
+            1230.0,
+            883.0
+          ],
+          [
+            881.0,
+            876.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10605325674302771,
+            0.066278400087402,
+            0.07003438227958435
+          ],
+          "rotation_vector": [
+            3.147149009441926,
+            0.021135826863702592,
+            0.0007779663652187684
+          ],
+          "rotation_matrix": [
+            [
+              0.9999096769048736,
+              0.013432407461189979,
+              0.0004565761571056522
+            ],
+            [
+              0.013429625372052011,
+              -0.9998939652032932,
+              0.005630587216426351
+            ],
+            [
+              0.0005321600858824585,
+              -0.005623946997617846,
+              -0.9999840438856067
+            ]
+          ],
+          "distance": 0.14333504207007874
+        },
+        "metrics": {
+          "detection_time_ms": 9.523911000087537,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853789323844634,
+          "center_pixel": [
+            1057.75,
+            704.75
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 10.057917999802157,
+        "calibration_available": true,
+        "timestamp": 1752775519.9517086
+      },
+      "system_metrics": {
+        "cpu_percent": 11.0,
+        "memory_mb": 5360.96484375,
+        "timestamp": 1752775519.9520955
+      }
+    },
+    {
+      "frame_id": 58,
+      "timestamp": 1752775520.0851693,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            885.0,
+            524.0
+          ],
+          [
+            1237.0,
+            529.0
+          ],
+          [
+            1233.0,
+            880.0
+          ],
+          [
+            881.0,
+            872.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.1063118556089859,
+            0.06582575461495388,
+            0.07009898392462831
+          ],
+          "rotation_vector": [
+            3.1455158585436953,
+            0.02207698981396991,
+            -0.003808857714188653
+          ],
+          "rotation_matrix": [
+            [
+              0.9998985527165395,
+              0.014031503483858135,
+              -0.002449731690121894
+            ],
+            [
+              0.014041197518779774,
+              -0.9998934731095894,
+              0.003985875698187877
+            ],
+            [
+              -0.0023935428990772565,
+              -0.004019868508455097,
+              -0.9999890557448942
+            ]
+          ],
+          "distance": 0.1433496011885603
+        },
+        "metrics": {
+          "detection_time_ms": 9.428997000213712,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853613634007253,
+          "center_pixel": [
+            1059.0,
+            701.25
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.94065499980934,
+        "calibration_available": true,
+        "timestamp": 1752775520.0851607
+      },
+      "system_metrics": {
+        "cpu_percent": 9.5,
+        "memory_mb": 5363.41796875,
+        "timestamp": 1752775520.085538
+      }
+    },
+    {
+      "frame_id": 59,
+      "timestamp": 1752775520.2141583,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            877.0,
+            520.0
+          ],
+          [
+            1230.0,
+            527.0
+          ],
+          [
+            1222.0,
+            876.0
+          ],
+          [
+            874.0,
+            868.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10532127550182739,
+            0.0654512977577135,
+            0.07020555082720382
+          ],
+          "rotation_vector": [
+            3.1474627986512673,
+            0.02711054402368152,
+            -0.0006681150246999851
+          ],
+          "rotation_matrix": [
+            [
+              0.9998515388572341,
+              0.017224215493042146,
+              -0.000476072965838414
+            ],
+            [
+              0.01722675710421936,
+              -0.999833707106781,
+              0.00598305714363401
+            ],
+            [
+              -0.00037294033273840393,
+              -0.005990370085479621,
+              -0.999981988028658
+            ]
+          ],
+          "distance": 0.14249653616299518
+        },
+        "metrics": {
+          "detection_time_ms": 9.509245000117517,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853581143974523,
+          "center_pixel": [
+            1050.75,
+            697.75
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 10.038502000043081,
+        "calibration_available": true,
+        "timestamp": 1752775520.2141504
+      },
+      "system_metrics": {
+        "cpu_percent": 13.1,
+        "memory_mb": 5366.6171875,
+        "timestamp": 1752775520.214575
+      }
+    },
+    {
+      "frame_id": 60,
+      "timestamp": 1752775520.350066,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            880.0,
+            517.0
+          ],
+          [
+            1232.0,
+            524.0
+          ],
+          [
+            1224.0,
+            873.0
+          ],
+          [
+            875.0,
+            864.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.1056971828310355,
+            0.06504303135519746,
+            0.07026543139202433
+          ],
+          "rotation_vector": [
+            3.1478018300256316,
+            0.029759403582930874,
+            -0.0014206923668392962
+          ],
+          "rotation_matrix": [
+            [
+              0.9998208532057857,
+              0.018903303921850606,
+              -0.0009625984062890563
+            ],
+            [
+              0.018909035648022023,
+              -0.9998010983172506,
+              0.006341307001025802
+            ],
+            [
+              -0.0008425352903440838,
+              -0.006358372783784691,
+              -0.9999794304033593
+            ]
+          ],
+          "distance": 0.1426173945737259
+        },
+        "metrics": {
+          "detection_time_ms": 9.429696000097465,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853705986773121,
+          "center_pixel": [
+            1052.75,
+            694.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.931924000284198,
+        "calibration_available": true,
+        "timestamp": 1752775520.3500578
+      },
+      "system_metrics": {
+        "cpu_percent": 15.4,
+        "memory_mb": 5366.171875,
+        "timestamp": 1752775520.3504865
+      }
+    },
+    {
+      "frame_id": 61,
+      "timestamp": 1752775520.4802184,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            888.0,
+            513.0
+          ],
+          [
+            1241.0,
+            520.0
+          ],
+          [
+            1233.0,
+            869.0
+          ],
+          [
+            884.0,
+            861.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.1067437601363039,
+            0.06437404746262415,
+            0.0701330755388469
+          ],
+          "rotation_vector": [
+            3.147829645905646,
+            0.0271963144559698,
+            -0.0014435210219610492
+          ],
+          "rotation_matrix": [
+            [
+              0.9998503031827078,
+              0.017275024952892806,
+              -0.0009719765038150686
+            ],
+            [
+              0.017280853025430178,
+              -0.9998305320257566,
+              0.006346601279899909
+            ],
+            [
+              -0.0008621740894496226,
+              -0.006362447796994287,
+              -0.9999793877445025
+            ]
+          ],
+          "distance": 0.14302760782203755
+        },
+        "metrics": {
+          "detection_time_ms": 8.91349799985619,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853674537128279,
+          "center_pixel": [
+            1061.5,
+            690.75
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.412025000074209,
+        "calibration_available": true,
+        "timestamp": 1752775520.4802108
+      },
+      "system_metrics": {
+        "cpu_percent": 10.3,
+        "memory_mb": 5366.171875,
+        "timestamp": 1752775520.4806044
+      }
+    },
+    {
+      "frame_id": 62,
+      "timestamp": 1752775520.6103015,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            888.0,
+            511.0
+          ],
+          [
+            1241.0,
+            517.0
+          ],
+          [
+            1232.0,
+            868.0
+          ],
+          [
+            883.0,
+            858.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10657718471565442,
+            0.06399393818423406,
+            0.07006544189524667
+          ],
+          "rotation_vector": [
+            3.1480535176359647,
+            0.030519349393466434,
+            -0.001030459664564122
+          ],
+          "rotation_matrix": [
+            [
+              0.9998118320988895,
+              0.01938514680993368,
+              -0.0007186641909438765
+            ],
+            [
+              0.01938947323176115,
+              -0.9997902072278944,
+              0.006602261657847755
+            ],
+            [
+              -0.0005905276088760706,
+              -0.006614953844221947,
+              -0.9999779465882145
+            ]
+          ],
+          "distance": 0.14269928722393282
+        },
+        "metrics": {
+          "detection_time_ms": 9.410559000116336,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853629853734523,
+          "center_pixel": [
+            1061.0,
+            688.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.940794000158348,
+        "calibration_available": true,
+        "timestamp": 1752775520.6102934
+      },
+      "system_metrics": {
+        "cpu_percent": 12.9,
+        "memory_mb": 5366.3359375,
+        "timestamp": 1752775520.6107512
+      }
+    },
+    {
+      "frame_id": 63,
+      "timestamp": 1752775520.7175379,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            887.0,
+            508.0
+          ],
+          [
+            1240.0,
+            516.0
+          ],
+          [
+            1230.0,
+            866.0
+          ],
+          [
+            882.0,
+            856.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10644376030354874,
+            0.06372328095912487,
+            0.07008747573888413
+          ],
+          "rotation_vector": [
+            3.147320458958231,
+            0.035449584426294624,
+            0.00045568161040896663
+          ],
+          "rotation_matrix": [
+            [
+              0.9997462633508983,
+              0.02252463739047983,
+              0.00022276971169313945
+            ],
+            [
+              0.022522921102823786,
+              -0.9997287378488784,
+              0.005930324112951399
+            ],
+            [
+              0.00035628768295419,
+              -0.005923801947742327,
+              -0.999982390659741
+            ]
+          ],
+          "distance": 0.1424892448544927
+        },
+        "metrics": {
+          "detection_time_ms": 9.022660000027827,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853641486721856,
+          "center_pixel": [
+            1059.75,
+            686.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.496044000115944,
+        "calibration_available": true,
+        "timestamp": 1752775520.7175312
+      },
+      "system_metrics": {
+        "cpu_percent": 13.4,
+        "memory_mb": 5366.18359375,
+        "timestamp": 1752775520.7178907
+      }
+    },
+    {
+      "frame_id": 64,
+      "timestamp": 1752775520.8545601,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            888.0,
+            507.0
+          ],
+          [
+            1242.0,
+            515.0
+          ],
+          [
+            1232.0,
+            865.0
+          ],
+          [
+            883.0,
+            855.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10656173004235123,
+            0.0635346570055713,
+            0.07003139447040403
+          ],
+          "rotation_vector": [
+            3.1480528077595045,
+            0.03359661957178499,
+            -0.0015957177267031586
+          ],
+          "rotation_matrix": [
+            [
+              0.9997717233947054,
+              0.02133834427965503,
+              -0.0010845108498547095
+            ],
+            [
+              0.021345075176322947,
+              -0.999750193627636,
+              0.006628582595209596
+            ],
+            [
+              -0.0009427969546308063,
+              -0.006650218410496534,
+              -0.9999774426100796
+            ]
+          ],
+          "distance": 0.14246561396317312
+        },
+        "metrics": {
+          "detection_time_ms": 9.048362000157795,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853579048062904,
+          "center_pixel": [
+            1061.25,
+            685.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.59731400007513,
+        "calibration_available": true,
+        "timestamp": 1752775520.8545513
+      },
+      "system_metrics": {
+        "cpu_percent": 10.8,
+        "memory_mb": 5366.3984375,
+        "timestamp": 1752775520.8549423
+      }
+    },
+    {
+      "frame_id": 65,
+      "timestamp": 1752775521.012367,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            887.0,
+            508.0
+          ],
+          [
+            1240.0,
+            516.0
+          ],
+          [
+            1230.0,
+            865.0
+          ],
+          [
+            882.0,
+            856.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10646875391654839,
+            0.06371173814105506,
+            0.07010410747321658
+          ],
+          "rotation_vector": [
+            3.1483803422365098,
+            0.03311555033969849,
+            0.0005023799669258372
+          ],
+          "rotation_matrix": [
+            [
+              0.9997787077596115,
+              0.021035091075099082,
+              0.00024587391752946036
+            ],
+            [
+              0.02103286943187697,
+              -0.9997545248657952,
+              0.006964798190157415
+            ],
+            [
+              0.0003923187258462039,
+              -0.006958085500357961,
+              -0.9999757152712195
+            ]
+          ],
+          "distance": 0.14251093650002167
+        },
+        "metrics": {
+          "detection_time_ms": 9.183434000078705,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853676875032666,
+          "center_pixel": [
+            1059.75,
+            686.25
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.669461000157753,
+        "calibration_available": true,
+        "timestamp": 1752775521.0123594
+      },
+      "system_metrics": {
+        "cpu_percent": 11.6,
+        "memory_mb": 5366.80078125,
+        "timestamp": 1752775521.012758
+      }
+    },
+    {
+      "frame_id": 66,
+      "timestamp": 1752775521.1401174,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            886.0,
+            508.0
+          ],
+          [
+            1239.0,
+            514.0
+          ],
+          [
+            1231.0,
+            864.0
+          ],
+          [
+            880.0,
+            855.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10626438555430842,
+            0.06352842322610057,
+            0.07004697898652325
+          ],
+          "rotation_vector": [
+            3.149375019099997,
+            0.027272491894839608,
+            -0.002580442281182387
+          ],
+          "rotation_matrix": [
+            [
+              0.9998486919913553,
+              0.017311249742874957,
+              -0.001706972617465231
+            ],
+            [
+              0.01732419732480451,
+              -0.9998188178070716,
+              0.007886935141170894
+            ],
+            [
+              -0.0015701306404884638,
+              -0.007915313715173374,
+              -0.9999674407192277
+            ]
+          ],
+          "distance": 0.14224823183424
+        },
+        "metrics": {
+          "detection_time_ms": 8.615555000233144,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.785367458733666,
+          "center_pixel": [
+            1059.0,
+            685.25
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.115828000176407,
+        "calibration_available": true,
+        "timestamp": 1752775521.1401098
+      },
+      "system_metrics": {
+        "cpu_percent": 10.5,
+        "memory_mb": 5367.32421875,
+        "timestamp": 1752775521.1405227
+      }
+    },
+    {
+      "frame_id": 67,
+      "timestamp": 1752775521.2735577,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            892.0,
+            507.0
+          ],
+          [
+            1245.0,
+            516.0
+          ],
+          [
+            1235.0,
+            866.0
+          ],
+          [
+            885.0,
+            855.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10700132599500559,
+            0.06360575991646203,
+            0.07004212259142353
+          ],
+          "rotation_vector": [
+            3.147284835345733,
+            0.03878117699039166,
+            -0.0017771517556498147
+          ],
+          "rotation_matrix": [
+            [
+              0.9996957426974379,
+              0.024636896830966315,
+              -0.0012022259181971669
+            ],
+            [
+              0.02464359498710473,
+              -0.9996787883500108,
+              0.005917207885984139
+            ],
+            [
+              -0.0010560581090119515,
+              -0.005945034700885102,
+              -0.9999817704856803
+            ]
+          ],
+          "distance": 0.14283163303817564
+        },
+        "metrics": {
+          "detection_time_ms": 9.915789999922708,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853708178634414,
+          "center_pixel": [
+            1064.25,
+            686.0
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 10.419276999982685,
+        "calibration_available": true,
+        "timestamp": 1752775521.2735493
+      },
+      "system_metrics": {
+        "cpu_percent": 11.2,
+        "memory_mb": 5368.8203125,
+        "timestamp": 1752775521.2739046
+      }
+    },
+    {
+      "frame_id": 68,
+      "timestamp": 1752775521.407341,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            889.0,
+            508.0
+          ],
+          [
+            1243.0,
+            516.0
+          ],
+          [
+            1231.0,
+            866.0
+          ],
+          [
+            883.0,
+            855.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10662808592158711,
+            0.06367247788206995,
+            0.07005166372425951
+          ],
+          "rotation_vector": [
+            -3.1332010110678192,
+            -0.03634650604797839,
+            0.0009731301032313038
+          ],
+          "rotation_matrix": [
+            [
+              0.9997307074899916,
+              0.023194824571995974,
+              -0.0007159711133792408
+            ],
+            [
+              0.023199905792099254,
+              -0.9996974388062635,
+              0.008172833990408033
+            ],
+            [
+              -0.0005261870376409357,
+              -0.008187243569809136,
+              -0.9999663455186529
+            ]
+          ],
+          "distance": 0.14258670603348964
+        },
+        "metrics": {
+          "detection_time_ms": 9.048779999830003,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.785351220383682,
+          "center_pixel": [
+            1061.5,
+            686.25
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.560158999647683,
+        "calibration_available": true,
+        "timestamp": 1752775521.4073331
+      },
+      "system_metrics": {
+        "cpu_percent": 13.1,
+        "memory_mb": 5365.93359375,
+        "timestamp": 1752775521.407778
+      }
+    },
+    {
+      "frame_id": 69,
+      "timestamp": 1752775521.5407946,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            891.0,
+            506.0
+          ],
+          [
+            1243.0,
+            514.0
+          ],
+          [
+            1232.0,
+            864.0
+          ],
+          [
+            884.0,
+            853.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10689399219870283,
+            0.06343828032325385,
+            0.07012308538352584
+          ],
+          "rotation_vector": [
+            3.1481631484770705,
+            0.03918297508531701,
+            0.0011119906807955894
+          ],
+          "rotation_matrix": [
+            [
+              0.9996899814940085,
+              0.02489085421793465,
+              0.0006215117127410512
+            ],
+            [
+              0.024886040591660007,
+              -0.9996670122055482,
+              0.00682273344800464
+            ],
+            [
+              0.0007911284205487099,
+              -0.00680515130866285,
+              -0.9999765317403646
+            ]
+          ],
+          "distance": 0.14271646044606534
+        },
+        "metrics": {
+          "detection_time_ms": 9.272273000078712,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853736571784512,
+          "center_pixel": [
+            1062.5,
+            684.25
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.850350000306207,
+        "calibration_available": true,
+        "timestamp": 1752775521.5407872
+      },
+      "system_metrics": {
+        "cpu_percent": 10.0,
+        "memory_mb": 5365.94140625,
+        "timestamp": 1752775521.5411952
+      }
+    },
+    {
+      "frame_id": 70,
+      "timestamp": 1752775521.672454,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            890.0,
+            506.0
+          ],
+          [
+            1245.0,
+            514.0
+          ],
+          [
+            1233.0,
+            863.0
+          ],
+          [
+            885.0,
+            853.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10690196428269416,
+            0.0633774225952536,
+            0.0700728094964319
+          ],
+          "rotation_vector": [
+            -3.1322342461877355,
+            -0.0321028795518967,
+            0.0025764091671029122
+          ],
+          "rotation_matrix": [
+            [
+              0.999788581656499,
+              0.020488229016801838,
+              -0.0017390977663343421
+            ],
+            [
+              0.020503351082611133,
+              -0.9997476808151043,
+              0.009175363709598273
+            ],
+            [
+              -0.001550672005608785,
+              -0.009209081201471911,
+              -0.9999563931691
+            ]
+          ],
+          "distance": 0.14267069178019365
+        },
+        "metrics": {
+          "detection_time_ms": 9.381993999795668,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853351595788406,
+          "center_pixel": [
+            1063.25,
+            684.0
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.907059999932244,
+        "calibration_available": true,
+        "timestamp": 1752775521.672446
+      },
+      "system_metrics": {
+        "cpu_percent": 12.1,
+        "memory_mb": 5365.7578125,
+        "timestamp": 1752775521.672857
+      }
+    },
+    {
+      "frame_id": 71,
+      "timestamp": 1752775521.8073611,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            892.0,
+            505.0
+          ],
+          [
+            1247.0,
+            514.0
+          ],
+          [
+            1236.0,
+            863.0
+          ],
+          [
+            888.0,
+            853.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10730336888203833,
+            0.06334653958868605,
+            0.0701046251055966
+          ],
+          "rotation_vector": [
+            -3.1346029309965737,
+            -0.03357551593590463,
+            0.0030521939591816984
+          ],
+          "rotation_matrix": [
+            [
+              0.999768671461859,
+              0.021413145115588283,
+              -0.0020200939698313243
+            ],
+            [
+              0.021426403106246966,
+              -0.9997473902135066,
+              0.0067871209810379095
+            ],
+            [
+              -0.00187425006784089,
+              -0.006828834273973289,
+              -0.999974926790238
+            ]
+          ],
+          "distance": 0.14297361823949203
+        },
+        "metrics": {
+          "detection_time_ms": 10.558052000305906,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853311137920134,
+          "center_pixel": [
+            1065.75,
+            683.75
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 11.084864000167727,
+        "calibration_available": true,
+        "timestamp": 1752775521.8073535
+      },
+      "system_metrics": {
+        "cpu_percent": 12.4,
+        "memory_mb": 5366.00390625,
+        "timestamp": 1752775521.8077016
+      }
+    },
+    {
+      "frame_id": 72,
+      "timestamp": 1752775521.9402125,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            891.0,
+            505.0
+          ],
+          [
+            1246.0,
+            514.0
+          ],
+          [
+            1236.0,
+            863.0
+          ],
+          [
+            887.0,
+            852.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10741428109786577,
+            0.06344395005798058,
+            0.07025843109463616
+          ],
+          "rotation_vector": [
+            -3.1354053736285756,
+            -0.03304007984883589,
+            0.006598752741937711
+          ],
+          "rotation_matrix": [
+            [
+              0.9997690822852605,
+              0.02106021233198727,
+              -0.004271950727619889
+            ],
+            [
+              0.021085492177470206,
+              -0.9997599022970977,
+              0.005961524849538928
+            ],
+            [
+              -0.004145374062909568,
+              -0.006050224411494078,
+              -0.9999731049675532
+            ]
+          ],
+          "distance": 0.14317545083781155
+        },
+        "metrics": {
+          "detection_time_ms": 9.005129999877681,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853122685040058,
+          "center_pixel": [
+            1065.0,
+            683.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.51252699996985,
+        "calibration_available": true,
+        "timestamp": 1752775521.9402044
+      },
+      "system_metrics": {
+        "cpu_percent": 10.1,
+        "memory_mb": 5365.28515625,
+        "timestamp": 1752775521.9406126
+      }
+    },
+    {
+      "frame_id": 73,
+      "timestamp": 1752775522.0736647,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            893.0,
+            507.0
+          ],
+          [
+            1247.0,
+            516.0
+          ],
+          [
+            1236.0,
+            865.0
+          ],
+          [
+            888.0,
+            854.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.10752223864929279,
+            0.06370522076688823,
+            0.07022832103389479
+          ],
+          "rotation_vector": [
+            -3.134895556788595,
+            -0.03599602141708062,
+            0.0036021952788676415
+          ],
+          "rotation_matrix": [
+            [
+              0.9997337080624902,
+              0.022953979714178663,
+              -0.0023722940173491135
+            ],
+            [
+              0.02296888973029811,
+              -0.9997152989513549,
+              0.006461512760988925
+            ],
+            [
+              -0.0022233011899160334,
+              -0.0065142810719288945,
+              -0.9999763102563655
+            ]
+          ],
+          "distance": 0.143357608909863
+        },
+        "metrics": {
+          "detection_time_ms": 9.12218399980702,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853390312302418,
+          "center_pixel": [
+            1066.0,
+            685.5
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.648159000335,
+        "calibration_available": true,
+        "timestamp": 1752775522.0736563
+      },
+      "system_metrics": {
+        "cpu_percent": 10.6,
+        "memory_mb": 5365.29296875,
+        "timestamp": 1752775522.07405
+      }
+    },
+    {
+      "frame_id": 74,
+      "timestamp": 1752775522.2134993,
+      "detection_result": {
+        "detected": true,
+        "marker_type": "aruco_4x4_50",
+        "id": 2,
+        "corners": [
+          [
+            896.0,
+            507.0
+          ],
+          [
+            1249.0,
+            514.0
+          ],
+          [
+            1237.0,
+            865.0
+          ],
+          [
+            888.0,
+            854.0
+          ]
+        ],
+        "pose_3d": {
+          "position": [
+            0.107238774450744,
+            0.0633446821590875,
+            0.06988691769988496
+          ],
+          "rotation_vector": [
+            3.1502969069997286,
+            0.037444250163948,
+            0.0010199123592591873
+          ],
+          "rotation_matrix": [
+            [
+              0.9997172846815714,
+              0.023770942373661084,
+              0.0005413017403727036
+            ],
+            [
+              0.023765162643678672,
+              -0.999677649406416,
+              0.00893388615229818
+            ],
+            [
+              0.0007534941443345152,
+              -0.008918496281930564,
+              -0.9999599455331416
+            ]
+          ],
+          "distance": 0.14281766266510545
+        },
+        "metrics": {
+          "detection_time_ms": 9.384577999753674,
+          "corners_detected": 4,
+          "corners_expected": 4,
+          "corner_accuracy": 1.0,
+          "shape_compactness": 0.7853628356944703,
+          "center_pixel": [
+            1067.5,
+            685.0
+          ]
+        },
+        "detection_method": "opencv_aruco",
+        "total_detection_time_ms": 9.920259999944392,
+        "calibration_available": true,
+        "timestamp": 1752775522.2134914
+      },
+      "system_metrics": {
+        "cpu_percent": 13.2,
+        "memory_mb": 5365.29296875,
+        "timestamp": 1752775522.2138762
+      }
+    }
+  ]
+}
