@@ -23,9 +23,9 @@ FX = (IMG_W / 2) / math.tan(hfov_rad / 2.0)
 FY = FX
 CX, CY = IMG_W / 2.0, IMG_H / 2.0
 
-# Output root: ../datasets/synthetic_markers relative to this file
+# Output root: synthetic_generation/datasets/synthetic_markers relative to this file
 THIS_DIR = Path(__file__).resolve().parent
-OUT_ROOT = (THIS_DIR / "../datasets/synthetic_markers").resolve()
+OUT_ROOT = (THIS_DIR / "datasets" / "synthetic_markers").resolve()
 OUT_ROOT.mkdir(parents=True, exist_ok=True)
 
 
