@@ -225,78 +225,6 @@ def make_marker(marker_type: str,
 
 
 # ======================================================
-# 3D rotation helper: pitch (X), yaw (Y), roll (Z)
-# ======================================================
-
-def apply_3d_rotation(img: Image.Image,
-                      pitch_deg: float,
-                      yaw_deg: float,
-                      roll_deg: float) -> Image.Image:
-    """
-    Approximate 3D rotation and project back to 2D via homography.
-    """
-    img_np = np.array(img)
-    h, w = img_np.shape[:2]
-    cx, cy = w / 2.0, h / 2.0
-
-    # Convert to radians
-    pitch = math.radians(pitch_deg)
-    yaw   = math.radians(yaw_deg)
-    roll  = math.radians(roll_deg)
-
-    # Rotation matrices
-    Rx = np.array([[1, 0, 0],
-                   [0, math.cos(pitch), -math.sin(pitch)],
-                   [0, math.sin(pitch),  math.cos(pitch)]], dtype=np.float32)
-
-    Ry = np.array([[ math.cos(yaw), 0, math.sin(yaw)],
-                   [0, 1, 0],
-                   [-math.sin(yaw), 0, math.cos(yaw)]], dtype=np.float32)
-
-    Rz = np.array([[math.cos(roll), -math.sin(roll), 0],
-                   [math.sin(roll),  math.cos(roll), 0],
-                   [0, 0, 1]], dtype=np.float32)
-
-    # Combined rotation (Rz * Ry * Rx)
-    R = Rz @ Ry @ Rx
-
-    # Corners in local coordinates (centered at 0,0)
-    pts = np.array([
-        [-w / 2.0, -h / 2.0, 0.0],
-        [ w / 2.0, -h / 2.0, 0.0],
-        [ w / 2.0,  h / 2.0, 0.0],
-        [-w / 2.0,  h / 2.0, 0.0],
-    ], dtype=np.float32)
-
-    pts_rot = pts @ R.T
-
-    # Simple pinhole projection
-    f = max(w, h)  # arbitrary virtual focal length
-    proj = []
-    for X, Y, Z in pts_rot:
-        Zp = f + Z
-        if abs(Zp) < 1e-6:
-            Zp = 1e-6
-        u = f * X / Zp + cx
-        v = f * Y / Zp + cy
-        proj.append([u, v])
-    proj = np.array(proj, dtype=np.float32)
-
-    # Original corners in image coords
-    orig = np.array([
-        [0.0, 0.0],
-        [float(w), 0.0],
-        [float(w), float(h)],
-        [0.0, float(h)],
-    ], dtype=np.float32)
-
-    H = cv2.getPerspectiveTransform(orig, proj)
-    warped = cv2.warpPerspective(img_np, H, (w, h), flags=cv2.INTER_NEAREST)
-
-    return Image.fromarray(warped)
-
-
-# ======================================================
 # Occlusion & lighting helpers
 # ======================================================
 
@@ -305,7 +233,7 @@ def apply_occlusion(img: Image.Image, bbox, occlusion_pct: float) -> Image.Image
     bbox: (x0, y0, x1, y1) bounding box of marker
     occlusion_pct: fraction (0..0.5) of marker width to occlude with a vertical stripe
     """
-    if occlusion_pct <= 0.0:
+    if occlusion_pct <= 0.0 or bbox is None:
         return img
 
     x0, y0, x1, y1 = bbox
@@ -345,10 +273,29 @@ def apply_lighting(img: Image.Image, lighting: str) -> Image.Image:
 # Core renderer: one scene & all modalities
 # ======================================================
 
+def _rotation_matrices(x_deg: float, y_deg: float) -> np.ndarray:
+    """Build R = Ry * Rx, with x=pitch, y=yaw (degrees)."""
+    tx = math.radians(x_deg)
+    ty = math.radians(y_deg)
+
+    Rx = np.array([
+        [1, 0, 0],
+        [0, math.cos(tx), -math.sin(tx)],
+        [0, math.sin(tx),  math.cos(tx)],
+    ], dtype=np.float32)
+
+    Ry = np.array([
+        [ math.cos(ty), 0, math.sin(ty)],
+        [0,            1, 0           ],
+        [-math.sin(ty), 0, math.cos(ty)],
+    ], dtype=np.float32)
+
+    return Ry @ Rx
+
+
 def render_scene(distance_m: float,
                  x_deg: float,
                  y_deg: float,
-                 z_deg: float,
                  occlusion_pct: float,
                  lighting: str,
                  marker_type: str,
@@ -359,23 +306,20 @@ def render_scene(distance_m: float,
     """
     Generate one sample: RGB, depth_mm, disparity, segmentation
     and save to out_dir with sample_id in filenames.
+
+    Rotations are around X and Y only (no Z/in-plane rotation).
+    The entire marker including its outer border is tilted in 3D.
     """
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    # --- 1) marker size in pixels ---
+    # --- 1) marker size in pixels (fronto-parallel approx) ---
     marker_px = int(round(FX * QR_SIZE_M / distance_m))
     marker_img = make_marker(marker_type, marker_id, marker_px, qr_text=marker_text)
+    marker_arr = np.array(marker_img)  # RGB
 
-    # 3D rotation (pitch, yaw, roll)
-    marker_img = apply_3d_rotation(marker_img,
-                                   pitch_deg=x_deg,
-                                   yaw_deg=y_deg,
-                                   roll_deg=z_deg)
-    marker_w, marker_h = marker_img.size
-
-    # --- 2) base scene: wall + floor ---
-    rgb = Image.new("RGB", (IMG_W, IMG_H), (255, 255, 255))
-    draw = ImageDraw.Draw(rgb)
+    # --- 2) base scene: wall + floor (PIL then to OpenCV) ---
+    base_rgb = Image.new("RGB", (IMG_W, IMG_H), (255, 255, 255))
+    draw = ImageDraw.Draw(base_rgb)
 
     horizon_y = int(IMG_H * 0.6)
     wall_color = (235, 235, 235)
@@ -388,21 +332,72 @@ def render_scene(distance_m: float,
     for x in range(0, IMG_W, 80):
         draw.line([(x, horizon_y), (x + 40, IMG_H)], fill=(180, 175, 170), width=1)
 
-    # --- 3) paste marker on wall ---
-    center_x = IMG_W // 2
-    center_y = int(IMG_H * 0.4)  # above floor
+    scene_bgr = cv2.cvtColor(np.array(base_rgb), cv2.COLOR_RGB2BGR)
 
-    x0 = center_x - marker_w // 2
-    y0 = center_y - marker_h // 2
-    rgb.paste(marker_img, (x0, y0), mask=None)
+    # --- 3) 3D pose & projection of marker corners ---
+    s = QR_SIZE_M / 2.0
+    # Local marker coordinates (square in Z=0 plane)
+    # order: TL, TR, BR, BL
+    corners_local = np.array([
+        [-s, -s, 0.0],
+        [ s, -s, 0.0],
+        [ s,  s, 0.0],
+        [-s,  s, 0.0],
+    ], dtype=np.float32)
 
-    # --- 4) occlusion on top of marker ---
-    rgb = apply_occlusion(rgb, (x0, y0, x0 + marker_w, y0 + marker_h), occlusion_pct)
+    R = _rotation_matrices(x_deg, y_deg)
 
-    # --- 5) lighting ---
+    # Rotate then translate so the marker center is at (0,0,distance_m)
+    corners_cam = (R @ corners_local.T).T
+    corners_cam[:, 2] += distance_m
+
+    # Project to image plane
+    pts_img = np.zeros((4, 2), dtype=np.float32)
+    pts_img[:, 0] = FX * corners_cam[:, 0] / corners_cam[:, 2] + CX
+    pts_img[:, 1] = FY * corners_cam[:, 1] / corners_cam[:, 2] + CY
+
+    # Source points in marker image (full square, so border rotates too)
+    src_pts = np.array([
+        [0.0, 0.0],
+        [marker_px - 1.0, 0.0],
+        [marker_px - 1.0, marker_px - 1.0],
+        [0.0, marker_px - 1.0],
+    ], dtype=np.float32)
+
+    H = cv2.getPerspectiveTransform(src_pts, pts_img)
+
+    # Warp marker onto the scene
+    marker_bgr = cv2.cvtColor(marker_arr, cv2.COLOR_RGB2BGR)
+    warped_marker = cv2.warpPerspective(marker_bgr, H, (IMG_W, IMG_H))
+
+    # Warp a mask to know where the marker is
+    mask_src = np.ones((marker_px, marker_px), dtype=np.uint8) * 255
+    warped_mask = cv2.warpPerspective(mask_src, H, (IMG_W, IMG_H))
+    mask_bool = warped_mask > 0
+
+    scene_bgr[mask_bool] = warped_marker[mask_bool]
+
+    # --- 4) segmentation: 0 bg, 1 wall, 2 floor, 3 marker ---
+    seg = np.zeros((IMG_H, IMG_W), dtype=np.uint8)
+    seg[0:horizon_y, :] = 1
+    seg[horizon_y:IMG_H, :] = 2
+    seg[mask_bool] = 3
+
+    # --- 5) occlusion (in image space, vertical stripe over marker bbox) ---
+    bbox = None
+    if mask_bool.any():
+        ys, xs = np.where(mask_bool)
+        x0, x1 = int(xs.min()), int(xs.max())
+        y0, y1 = int(ys.min()), int(ys.max())
+        bbox = (x0, y0, x1, y1)
+
+    rgb = Image.fromarray(cv2.cvtColor(scene_bgr, cv2.COLOR_BGR2RGB))
+    rgb = apply_occlusion(rgb, bbox, occlusion_pct)
+
+    # --- 6) lighting ---
     rgb = apply_lighting(rgb, lighting)
 
-    # --- 6) depth map in mm ---
+    # --- 7) depth map in mm (simple wall/floor model) ---
     depth_mm = np.zeros((IMG_H, IMG_W), dtype=np.uint16)
     wall_mm = int(round(distance_m * 1000.0))
     floor_mm = int(round(distance_m * 1200.0))  # floor slightly further
@@ -410,21 +405,12 @@ def render_scene(distance_m: float,
     depth_mm[0:horizon_y, :] = wall_mm
     depth_mm[horizon_y:IMG_H, :] = floor_mm
 
-    # --- 7) disparity in 1/16 px units (OAK-style) ---
+    # --- 8) disparity in 1/16 px units (OAK-style) ---
     depth_m = depth_mm.astype(np.float32) / 1000.0
     disp_px = np.zeros_like(depth_m)
     valid = depth_m > 0
     disp_px[valid] = FX * BASELINE_M / depth_m[valid]
     disp_16 = (disp_px * 16.0).astype(np.uint16)
-
-    # NOTE: This is stored as 16-bit; it will look very dark in normal viewers.
-    # For visual debugging, you can normalize and save a preview image.
-
-    # --- 8) segmentation: 0 bg, 1 wall, 2 floor, 3 marker (rectangular box) ---
-    seg = np.zeros((IMG_H, IMG_W), dtype=np.uint8)
-    seg[0:horizon_y, :] = 1
-    seg[horizon_y:IMG_H, :] = 2
-    seg[y0:y0 + marker_h, x0:x0 + marker_w] = 3
 
     # --- 9) save files ---
     rgb_path = out_dir / f"rgb_{sample_id}.png"
@@ -447,8 +433,8 @@ def render_scene(distance_m: float,
 def main():
     # You can tweak these test grids to match config/test_configurations.py
     distances = [0.3, 0.6, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5]
-    x_rotations = [0, 20, 40, 60]
-    y_rotations = [0, 20, 40, 60]
+    x_rotations = [-60, -40, -20, 0, 20, 40, 60]   # pitch
+    y_rotations = [-60, -40, -20, 0, 20, 40, 60]   # yaw
     occlusions = [0.05, 0.10, 0.15, 0.20]
     lightings = ["bright", "normal", "dim", "shadow"]
 
@@ -474,7 +460,6 @@ def main():
         "distance_m",
         "x_deg",
         "y_deg",
-        "z_deg",
         "occlusion_pct",
         "lighting",
         "qr_size_m",
@@ -501,7 +486,6 @@ def main():
                 distance_m=d,
                 x_deg=0.0,
                 y_deg=0.0,
-                z_deg=0.0,
                 occlusion_pct=0.0,
                 lighting="normal",
                 marker_type=marker_type,
@@ -519,7 +503,6 @@ def main():
                 distance_m=d,
                 x_deg=0.0,
                 y_deg=0.0,
-                z_deg=0.0,
                 occlusion_pct=0.0,
                 lighting="normal",
                 qr_size_m=QR_SIZE_M,
@@ -539,12 +522,11 @@ def main():
         out_dir.mkdir(parents=True, exist_ok=True)
 
         for x in x_rotations:
-            sample_id = f"{split}_x{int(x):03d}"
+            sample_id = f"{split}_x{int(x):+03d}".replace("+", "p").replace("-", "m")
             rgb_path, seg_path, depth_path, disp_path = render_scene(
                 distance_m=0.6,
-                x_deg=float(x),
+                x_deg=x,
                 y_deg=0.0,
-                z_deg=0.0,
                 occlusion_pct=0.0,
                 lighting="normal",
                 marker_type=marker_type,
@@ -560,9 +542,8 @@ def main():
                 marker_id=marker_id,
                 marker_text=marker_text,
                 distance_m=0.6,
-                x_deg=float(x),
+                x_deg=x,
                 y_deg=0.0,
-                z_deg=0.0,
                 occlusion_pct=0.0,
                 lighting="normal",
                 qr_size_m=QR_SIZE_M,
@@ -582,12 +563,11 @@ def main():
         out_dir.mkdir(parents=True, exist_ok=True)
 
         for y in y_rotations:
-            sample_id = f"{split}_y{int(y):03d}"
+            sample_id = f"{split}_y{int(y):+03d}".replace("+", "p").replace("-", "m")
             rgb_path, seg_path, depth_path, disp_path = render_scene(
                 distance_m=0.6,
                 x_deg=0.0,
-                y_deg=float(y),
-                z_deg=0.0,
+                y_deg=y,
                 occlusion_pct=0.0,
                 lighting="normal",
                 marker_type=marker_type,
@@ -604,8 +584,7 @@ def main():
                 marker_text=marker_text,
                 distance_m=0.6,
                 x_deg=0.0,
-                y_deg=float(y),
-                z_deg=0.0,
+                y_deg=y,
                 occlusion_pct=0.0,
                 lighting="normal",
                 qr_size_m=QR_SIZE_M,
@@ -630,7 +609,6 @@ def main():
                 distance_m=0.6,
                 x_deg=0.0,
                 y_deg=0.0,
-                z_deg=0.0,
                 occlusion_pct=occ,
                 lighting="normal",
                 marker_type=marker_type,
@@ -648,7 +626,6 @@ def main():
                 distance_m=0.6,
                 x_deg=0.0,
                 y_deg=0.0,
-                z_deg=0.0,
                 occlusion_pct=occ,
                 lighting="normal",
                 qr_size_m=QR_SIZE_M,
@@ -673,7 +650,6 @@ def main():
                 distance_m=0.6,
                 x_deg=0.0,
                 y_deg=0.0,
-                z_deg=0.0,
                 occlusion_pct=0.0,
                 lighting=lighting,
                 marker_type=marker_type,
@@ -691,7 +667,6 @@ def main():
                 distance_m=0.6,
                 x_deg=0.0,
                 y_deg=0.0,
-                z_deg=0.0,
                 occlusion_pct=0.0,
                 lighting=lighting,
                 qr_size_m=QR_SIZE_M,
