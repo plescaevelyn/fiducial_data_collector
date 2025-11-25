@@ -225,6 +225,78 @@ def make_marker(marker_type: str,
 
 
 # ======================================================
+# 3D rotation helper: pitch (X), yaw (Y), roll (Z)
+# ======================================================
+
+def apply_3d_rotation(img: Image.Image,
+                      pitch_deg: float,
+                      yaw_deg: float,
+                      roll_deg: float) -> Image.Image:
+    """
+    Approximate 3D rotation and project back to 2D via homography.
+    """
+    img_np = np.array(img)
+    h, w = img_np.shape[:2]
+    cx, cy = w / 2.0, h / 2.0
+
+    # Convert to radians
+    pitch = math.radians(pitch_deg)
+    yaw   = math.radians(yaw_deg)
+    roll  = math.radians(roll_deg)
+
+    # Rotation matrices
+    Rx = np.array([[1, 0, 0],
+                   [0, math.cos(pitch), -math.sin(pitch)],
+                   [0, math.sin(pitch),  math.cos(pitch)]], dtype=np.float32)
+
+    Ry = np.array([[ math.cos(yaw), 0, math.sin(yaw)],
+                   [0, 1, 0],
+                   [-math.sin(yaw), 0, math.cos(yaw)]], dtype=np.float32)
+
+    Rz = np.array([[math.cos(roll), -math.sin(roll), 0],
+                   [math.sin(roll),  math.cos(roll), 0],
+                   [0, 0, 1]], dtype=np.float32)
+
+    # Combined rotation (Rz * Ry * Rx)
+    R = Rz @ Ry @ Rx
+
+    # Corners in local coordinates (centered at 0,0)
+    pts = np.array([
+        [-w / 2.0, -h / 2.0, 0.0],
+        [ w / 2.0, -h / 2.0, 0.0],
+        [ w / 2.0,  h / 2.0, 0.0],
+        [-w / 2.0,  h / 2.0, 0.0],
+    ], dtype=np.float32)
+
+    pts_rot = pts @ R.T
+
+    # Simple pinhole projection
+    f = max(w, h)  # arbitrary virtual focal length
+    proj = []
+    for X, Y, Z in pts_rot:
+        Zp = f + Z
+        if abs(Zp) < 1e-6:
+            Zp = 1e-6
+        u = f * X / Zp + cx
+        v = f * Y / Zp + cy
+        proj.append([u, v])
+    proj = np.array(proj, dtype=np.float32)
+
+    # Original corners in image coords
+    orig = np.array([
+        [0.0, 0.0],
+        [float(w), 0.0],
+        [float(w), float(h)],
+        [0.0, float(h)],
+    ], dtype=np.float32)
+
+    H = cv2.getPerspectiveTransform(orig, proj)
+    warped = cv2.warpPerspective(img_np, H, (w, h), flags=cv2.INTER_NEAREST)
+
+    return Image.fromarray(warped)
+
+
+# ======================================================
 # Occlusion & lighting helpers
 # ======================================================
 
@@ -274,6 +346,8 @@ def apply_lighting(img: Image.Image, lighting: str) -> Image.Image:
 # ======================================================
 
 def render_scene(distance_m: float,
+                 x_deg: float,
+                 y_deg: float,
                  z_deg: float,
                  occlusion_pct: float,
                  lighting: str,
@@ -292,9 +366,11 @@ def render_scene(distance_m: float,
     marker_px = int(round(FX * QR_SIZE_M / distance_m))
     marker_img = make_marker(marker_type, marker_id, marker_px, qr_text=marker_text)
 
-    # Z (in-plane) rotation
-    if abs(z_deg) > 1e-3:
-        marker_img = marker_img.rotate(z_deg, resample=Image.NEAREST, expand=True)
+    # 3D rotation (pitch, yaw, roll)
+    marker_img = apply_3d_rotation(marker_img,
+                                   pitch_deg=x_deg,
+                                   yaw_deg=y_deg,
+                                   roll_deg=z_deg)
     marker_w, marker_h = marker_img.size
 
     # --- 2) base scene: wall + floor ---
@@ -341,7 +417,10 @@ def render_scene(distance_m: float,
     disp_px[valid] = FX * BASELINE_M / depth_m[valid]
     disp_16 = (disp_px * 16.0).astype(np.uint16)
 
-    # --- 8) segmentation: 0 bg, 1 wall, 2 floor, 3 marker ---
+    # NOTE: This is stored as 16-bit; it will look very dark in normal viewers.
+    # For visual debugging, you can normalize and save a preview image.
+
+    # --- 8) segmentation: 0 bg, 1 wall, 2 floor, 3 marker (rectangular box) ---
     seg = np.zeros((IMG_H, IMG_W), dtype=np.uint8)
     seg[0:horizon_y, :] = 1
     seg[horizon_y:IMG_H, :] = 2
@@ -368,7 +447,8 @@ def render_scene(distance_m: float,
 def main():
     # You can tweak these test grids to match config/test_configurations.py
     distances = [0.3, 0.6, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5]
-    z_rotations = [0, 45, 90, 180, 270]
+    x_rotations = [0, 20, 40, 60]
+    y_rotations = [0, 20, 40, 60]
     occlusions = [0.05, 0.10, 0.15, 0.20]
     lightings = ["bright", "normal", "dim", "shadow"]
 
@@ -419,6 +499,8 @@ def main():
             sample_id = f"{split}_d{int(d * 100):03d}"
             rgb_path, seg_path, depth_path, disp_path = render_scene(
                 distance_m=d,
+                x_deg=0.0,
+                y_deg=0.0,
                 z_deg=0.0,
                 occlusion_pct=0.0,
                 lighting="normal",
@@ -451,16 +533,61 @@ def main():
                 img_height=IMG_H,
             ))
 
-        # ----- Test set: z-rotation -----
-        split = f"{marker_type}_z_rotation"
+        # ----- Test set: X-rotation (pitch) -----
+        split = f"{marker_type}_x_rotation"
         out_dir = OUT_ROOT / split
         out_dir.mkdir(parents=True, exist_ok=True)
 
-        for z in z_rotations:
-            sample_id = f"{split}_z{int(z):03d}"
+        for x in x_rotations:
+            sample_id = f"{split}_x{int(x):03d}"
             rgb_path, seg_path, depth_path, disp_path = render_scene(
                 distance_m=0.6,
-                z_deg=z,
+                x_deg=float(x),
+                y_deg=0.0,
+                z_deg=0.0,
+                occlusion_pct=0.0,
+                lighting="normal",
+                marker_type=marker_type,
+                marker_id=marker_id,
+                marker_text=marker_text,
+                out_dir=out_dir,
+                sample_id=sample_id,
+            )
+            writer.writerow(dict(
+                sample_id=sample_id,
+                split=split,
+                marker_type=marker_type,
+                marker_id=marker_id,
+                marker_text=marker_text,
+                distance_m=0.6,
+                x_deg=float(x),
+                y_deg=0.0,
+                z_deg=0.0,
+                occlusion_pct=0.0,
+                lighting="normal",
+                qr_size_m=QR_SIZE_M,
+                rgb_path=os.path.relpath(rgb_path, OUT_ROOT),
+                depth_path=os.path.relpath(depth_path, OUT_ROOT),
+                disp_path=os.path.relpath(disp_path, OUT_ROOT),
+                seg_path=os.path.relpath(seg_path, OUT_ROOT),
+                fx=FX, fy=FY, cx=CX, cy=CY,
+                baseline_m=BASELINE_M,
+                img_width=IMG_W,
+                img_height=IMG_H,
+            ))
+
+        # ----- Test set: Y-rotation (yaw) -----
+        split = f"{marker_type}_y_rotation"
+        out_dir = OUT_ROOT / split
+        out_dir.mkdir(parents=True, exist_ok=True)
+
+        for y in y_rotations:
+            sample_id = f"{split}_y{int(y):03d}"
+            rgb_path, seg_path, depth_path, disp_path = render_scene(
+                distance_m=0.6,
+                x_deg=0.0,
+                y_deg=float(y),
+                z_deg=0.0,
                 occlusion_pct=0.0,
                 lighting="normal",
                 marker_type=marker_type,
@@ -477,8 +604,8 @@ def main():
                 marker_text=marker_text,
                 distance_m=0.6,
                 x_deg=0.0,
-                y_deg=0.0,
-                z_deg=z,
+                y_deg=float(y),
+                z_deg=0.0,
                 occlusion_pct=0.0,
                 lighting="normal",
                 qr_size_m=QR_SIZE_M,
@@ -501,6 +628,8 @@ def main():
             sample_id = f"{split}_occ{int(occ * 100):02d}"
             rgb_path, seg_path, depth_path, disp_path = render_scene(
                 distance_m=0.6,
+                x_deg=0.0,
+                y_deg=0.0,
                 z_deg=0.0,
                 occlusion_pct=occ,
                 lighting="normal",
@@ -542,6 +671,8 @@ def main():
             sample_id = f"{split}_{lighting}"
             rgb_path, seg_path, depth_path, disp_path = render_scene(
                 distance_m=0.6,
+                x_deg=0.0,
+                y_deg=0.0,
                 z_deg=0.0,
                 occlusion_pct=0.0,
                 lighting=lighting,
