@@ -5,7 +5,7 @@
 #   - apriltag_36h11  (via OpenCV's ArUco AprilTag dictionary)
 #   - qr_code         (via cv2.QRCodeDetector)
 #
-# Expected return dict (used by DetectorManager + eval scripts):
+# Expected result dictionary (used by DetectorManager + eval scripts):
 # {
 #   "detected": bool,
 #   "marker_type": str,
@@ -36,27 +36,20 @@ def detect_marker(
     marker_type : str
         One of: "aruco_4x4_50", "aruco_6x6_250", "apriltag_36h11", "qr_code".
     rgb_image : np.ndarray
-        Input color image (H, W, 3), BGR or RGB – we'll just convert to gray.
+        Input color image (H, W, 3), BGR or RGB.
     depth_image : np.ndarray
-        Depth image (unused here, but kept for API compatibility).
+        Depth image (unused for 2D detection, kept for API compatibility).
     camera_matrix, dist_coeffs :
-        Camera intrinsics (unused for 2D detection in synthetic dataset,
-        but kept for potential pose estimation later).
+        Camera intrinsics (unused here but kept for future pose estimation).
 
     Returns
     -------
     Dict
-        Detection result dict with keys:
-        - detected (bool)
-        - marker_type (str)
-        - marker_id (Optional[int])
-        - decoded (Optional[str])
-        - confidence (Optional[float])
-        - error (Optional[str])
+        Standardized detection result dictionary.
     """
     # Convert to grayscale for all detectors
     if rgb_image.ndim == 3:
-        # Works fine whether input is RGB or BGR
+        # Works correctly whether input is RGB or BGR
         gray = cv2.cvtColor(rgb_image, cv2.COLOR_BGR2GRAY)
     else:
         gray = rgb_image.copy()
@@ -70,7 +63,7 @@ def detect_marker(
     if marker_type == "apriltag_36h11":
         return _detect_apriltag(marker_type, gray)
 
-    # Safety net – shouldn't normally get here, DetectorManager filtrează deja
+    # Safety fallback – normally never reached
     return {
         "detected": False,
         "marker_type": marker_type,
@@ -81,10 +74,9 @@ def detect_marker(
     }
 
 
-# =====================
-# QR DETECTION (OpenCV)
-# =====================
-
+# =====================================================
+# QR DETECTION (OpenCV QRCodeDetector)
+# =====================================================
 
 def _detect_qr(marker_type: str, gray: np.ndarray) -> Dict:
     qr = cv2.QRCodeDetector()
@@ -111,23 +103,25 @@ def _detect_qr(marker_type: str, gray: np.ndarray) -> Dict:
             "error": None,
         }
 
-    # OpenCV QRCodeDetector nu dă un scor de încredere → confidence = None
+    # OpenCV QRCodeDetector provides no confidence score
     return {
         "detected": True,
         "marker_type": marker_type,
-        "marker_id": None,           # QR nu are ID numeric, doar payload
-        "decoded": decoded_text,     # conținutul QR-ului
+        "marker_id": None,        # QR codes have no numeric ID
+        "decoded": decoded_text,  # QR payload
         "confidence": None,
         "error": None,
     }
 
 
-# ==========================
-# ArUco / AprilTag (OpenCV)
-# ==========================
-
+# =====================================================
+# ArUco / AprilTag DETECTION (via OpenCV ArUco module)
+# =====================================================
 
 def _get_aruco_module():
+    """
+    Helper to ensure OpenCV was built with opencv-contrib (aruco module).
+    """
     if not hasattr(cv2, "aruco"):
         raise RuntimeError(
             "OpenCV was built without the 'aruco' module "
@@ -155,14 +149,12 @@ def _detect_aruco(marker_type: str, gray: np.ndarray) -> Dict:
 
     dictionary = aruco.getPredefinedDictionary(dict_id)
 
-    # API compat: vechi (detectMarkers) vs nou (ArucoDetector)
+    # Support both new and old OpenCV ArUco APIs
     try:
-        # OpenCV >= 4.7
         parameters = aruco.DetectorParameters()
         detector = aruco.ArucoDetector(dictionary, parameters)
         corners, ids, _ = detector.detectMarkers(gray)
     except AttributeError:
-        # OpenCV mai vechi
         parameters = aruco.DetectorParameters_create()
         corners, ids, _ = aruco.detectMarkers(gray, dictionary, parameters=parameters)
 
@@ -176,27 +168,25 @@ def _detect_aruco(marker_type: str, gray: np.ndarray) -> Dict:
             "error": None,
         }
 
-    # Pentru dataset-ul tău sintetic avem un singur marker per imagine
     marker_id = int(ids[0][0])
 
     return {
         "detected": True,
         "marker_type": marker_type,
         "marker_id": marker_id,
-        "decoded": None,    # ArUco nu are payload text
-        "confidence": None, # OpenCV nu dă scor
+        "decoded": None,
+        "confidence": None,  # OpenCV ArUco also provides no score
         "error": None,
     }
 
 
 def _detect_apriltag(marker_type: str, gray: np.ndarray) -> Dict:
     """
-    AprilTag 36h11 prin OpenCV, folosind ArUco AprilTag dictionary.
-    Nu mai depindem de librăria externă `apriltag`.
+    AprilTag 36h11 detection using OpenCV's built-in AprilTag dictionary.
+    Does not require the external 'apriltag' library.
     """
     aruco = _get_aruco_module()
 
-    # DICT_APRILTAG_36h11 este suportat de OpenCV cu contrib
     try:
         dict_id = aruco.DICT_APRILTAG_36h11
     except AttributeError as e:
@@ -206,7 +196,7 @@ def _detect_apriltag(marker_type: str, gray: np.ndarray) -> Dict:
             "marker_id": None,
             "decoded": None,
             "confidence": None,
-            "error": f"OpenCV ArUco AprilTag dictionary not available: {e}",
+            "error": f"OpenCV AprilTag dictionary not available: {e}",
         }
 
     dictionary = aruco.getPredefinedDictionary(dict_id)

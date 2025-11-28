@@ -1,5 +1,5 @@
 # Centralized manager for all fiducial marker detectors
-# Coordinates OpenCV and external detectors into a unified interface
+# Provides a unified interface for OpenCV-based and external detectors.
 
 import time
 from typing import Dict, List, Optional
@@ -14,8 +14,8 @@ from .external_detectors import detect_external_marker
 
 class DetectorManager:
     """
-    Centralized manager for all fiducial marker detectors.
-    Provides a unified interface for detecting all marker types.
+    Central manager for all fiducial marker detectors.
+    Combines OpenCV-based detectors and external detectors under one interface.
     """
 
     def __init__(self):
@@ -23,6 +23,7 @@ class DetectorManager:
         self.dist_coeffs = None
         self.is_calibrated = False
 
+        # Marker families handled directly with OpenCV
         self.opencv_markers = {
             "aruco_4x4_50",
             "aruco_6x6_250",
@@ -30,14 +31,17 @@ class DetectorManager:
             "qr_code",
         }
 
+        # Marker families requiring external detectors
         self.external_markers = {
             "runetag",
             "chromatag",
             "coppertag",
         }
 
+        # All supported marker types
         self.all_markers = self.opencv_markers | self.external_markers
 
+        # Statistics collected during runtime
         self.detection_stats = {
             marker: {"attempts": 0, "successes": 0, "avg_time": 0.0}
             for marker in self.all_markers
@@ -45,7 +49,8 @@ class DetectorManager:
 
     def calibrate_camera(self, device: dai.Device) -> bool:
         """
-        Calibrates the OAK-D Lite camera for 3D pose estimation.
+        Reads intrinsics from an OAK-D device and prepares data for pose estimation.
+        Returns True if successful.
         """
         try:
             calib_data = device.readCalibration()
@@ -76,10 +81,9 @@ class DetectorManager:
         depth_image: Optional[np.ndarray] = None,
     ) -> Dict:
         """
-        Detects a specific marker using the appropriate detector.
+        Detects a specific marker using the appropriate detector backend.
 
-        depth_image can be None (e.g. synthetic dataset). In that case
-        a dummy depth map filled with zeros is used.
+        If depth_image is None (e.g., synthetic dataset), a zero-depth map is used.
         """
         if depth_image is None:
             depth_image = np.zeros(rgb_image.shape[:2], dtype=np.uint16)
@@ -88,7 +92,7 @@ class DetectorManager:
             return {
                 "detected": False,
                 "marker_type": marker_type,
-                "error": f"Marker type {marker_type} not supported",
+                "error": f"Marker type {marker_type} is not supported",
             }
 
         self.detection_stats[marker_type]["attempts"] += 1
@@ -96,6 +100,7 @@ class DetectorManager:
         start_time = time.perf_counter()
 
         try:
+            # Use OpenCV-based detectors
             if marker_type in self.opencv_markers:
                 result = detect_opencv_marker(
                     marker_type,
@@ -104,6 +109,8 @@ class DetectorManager:
                     self.camera_matrix,
                     self.dist_coeffs,
                 )
+
+            # Use external/custom detectors
             elif marker_type in self.external_markers:
                 result = detect_external_marker(
                     marker_type,
@@ -112,6 +119,7 @@ class DetectorManager:
                     self.camera_matrix,
                     self.dist_coeffs,
                 )
+
             else:
                 result = {
                     "detected": False,
@@ -121,10 +129,12 @@ class DetectorManager:
 
             total_time = (time.perf_counter() - start_time) * 1000.0
 
+            # Add metadata into result
             result["total_detection_time_ms"] = total_time
             result["calibration_available"] = self.is_calibrated
             result["timestamp"] = time.time()
 
+            # Update success statistics
             if result.get("detected", False):
                 self.detection_stats[marker_type]["successes"] += 1
 
@@ -150,8 +160,8 @@ class DetectorManager:
         depth_image: np.ndarray,
     ) -> Dict[str, Dict]:
         """
-        Detects all marker types in the given image.
-        Useful for comparisons and evaluations.
+        Runs detection for every supported marker type on the same image.
+        Useful for comparison studies and debugging.
         """
         results: Dict[str, Dict] = {}
         print("Detecting all marker types...")
@@ -162,30 +172,27 @@ class DetectorManager:
 
     def get_detection_statistics(self) -> Dict:
         """
-        Returns detection statistics for all markers.
+        Returns accumulated detection statistics for each marker type.
         """
         stats_out: Dict[str, Dict] = {}
         for marker_type, data in self.detection_stats.items():
             if data["attempts"] > 0:
                 success_rate = (data["successes"] / data["attempts"]) * 100.0
-                stats_out[marker_type] = {
-                    "attempts": data["attempts"],
-                    "successes": data["successes"],
-                    "success_rate_percent": success_rate,
-                    "avg_detection_time_ms": data["avg_time"],
-                }
             else:
-                stats_out[marker_type] = {
-                    "attempts": 0,
-                    "successes": 0,
-                    "success_rate_percent": 0.0,
-                    "avg_detection_time_ms": 0.0,
-                }
+                success_rate = 0.0
+
+            stats_out[marker_type] = {
+                "attempts": data["attempts"],
+                "successes": data["successes"],
+                "success_rate_percent": success_rate,
+                "avg_detection_time_ms": data["avg_time"],
+            }
+
         return stats_out
 
     def print_detection_summary(self):
         """
-        Displays a summary of detector performance.
+        Prints a formatted performance summary for all detectors.
         """
         stats = self.get_detection_statistics()
         print("\nDETECTION PERFORMANCE SUMMARY")
@@ -206,11 +213,13 @@ class DetectorManager:
 
     def validate_marker_availability(self) -> Dict[str, bool]:
         """
-        Validates availability of all detectors.
+        Tests which detectors are functional by running each one on dummy images.
+        Returns a dictionary: marker_type → True/False.
         """
         availability: Dict[str, bool] = {}
         print("Validating detector availability...")
 
+        # OpenCV-based detectors
         for marker_type in self.opencv_markers:
             try:
                 test_image = np.zeros((480, 640, 3), dtype=np.uint8)
@@ -222,6 +231,7 @@ class DetectorManager:
             except Exception:
                 availability[marker_type] = False
 
+        # External detectors
         for marker_type in self.external_markers:
             try:
                 test_image = np.zeros((480, 640, 3), dtype=np.uint8)
@@ -237,7 +247,8 @@ class DetectorManager:
 
     def get_recommended_test_order(self) -> List[str]:
         """
-        Returns recommended test order based on success rate and performance.
+        Orders marker types based on success rate and detection speed.
+        Highest-performing detectors appear first.
         """
         stats = self.get_detection_statistics()
         sorted_markers = sorted(
@@ -252,7 +263,7 @@ class DetectorManager:
 
     def reset_statistics(self):
         """
-        Resets detection statistics.
+        Clears all accumulated detection statistics.
         """
         self.detection_stats = {
             marker: {"attempts": 0, "successes": 0, "avg_time": 0.0}
@@ -263,7 +274,8 @@ class DetectorManager:
 
 def create_detector_manager(oak_device: Optional[dai.Device] = None) -> DetectorManager:
     """
-    Creates and initializes a DetectorManager.
+    Factory function for constructing a DetectorManager.
+    If an OAK device is provided, marker detector availability is validated.
     """
     manager = DetectorManager()
     if oak_device is not None:
