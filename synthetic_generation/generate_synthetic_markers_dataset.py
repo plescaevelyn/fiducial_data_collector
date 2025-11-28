@@ -15,7 +15,7 @@ import cv2
 IMG_W, IMG_H = 1280, 720
 HFOV_DEG = 71.86          # approx OAK-D Lite RGB horizontal FOV
 BASELINE_M = 0.075        # ~7.5 cm stereo baseline
-QR_SIZE_M = 0.10          # 10 cm marker size in meters
+QR_SIZE_M = 0.1          # 10 cm marker size in meters
 
 # Derived intrinsics (pinhole model)
 hfov_rad = math.radians(HFOV_DEG)
